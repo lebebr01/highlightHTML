@@ -1,7 +1,8 @@
 Package: highlightHTML
 Title: Highlight HTML Tables
 Version: 0.1
-Authors@R: Brandon LeBeau <lebea027@umn.edu> [aut,cre]
+Author: Brandon LeBeau <lebea027@umn.edu> [aut,cre]
+Maintainer: Brandon LeBeau <lebea027@umn.edu>
 Description: This package easily highlights specific cells in an HTML table.
     This may be helpful for those using markdown to create HTML tables.
 Depends:

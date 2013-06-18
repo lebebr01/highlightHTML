@@ -4,9 +4,9 @@
 #' @param tags Character vector of tags to add to CSS
 updateCSS <- function(input, tags) {
   
-  location <- grep("</style>", tmp)
+  location <- grep("</style>", input)
   
-  ## split file
+ # # split file
   tmpA <- input[1:(location-1)]
   tmpB <- input[location:length(input)]
   

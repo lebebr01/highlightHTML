@@ -20,10 +20,11 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
   tmp <- readLines(input)
   
   CSSid <- gsub("\\{.+", "", tags)
-  CSSid <- gsub("^\\s+|\\s+$", "", CSSid)
+  CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
+  CSSidPaste <- gsub("#", "", CSSid)
   CSSid2 <- paste(" ", CSSid, sep = "")
   
-  ids <- paste('<td id=', CSSid, '>', sep = "")
+  ids <- paste("<td id='", CSSidPaste, "'>", sep = "")
   
   for(i in 1:length(CSSid)){
     locations <- grep(CSSid[i], tmp)  # finds locations to add id values
@@ -31,7 +32,7 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
     tmp[locations] <- gsub(CSSid2[i], "", tmp[locations], fixed = TRUE)
   }
   
-  if(updateCSS = TRUE){
+  if(updateCSS == TRUE){
     tmp <- updateCSS(tmp, tags)
   }
   
