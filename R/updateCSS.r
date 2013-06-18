@@ -1,10 +1,16 @@
 #' Update external CSS file
 #' 
-#' @param input File name of HTML or CSS file to add tags
-#' @param output Output file name of highlighted HTML file
-#' @param customStylesheet TRUE/FALSE variable saying whether a custom stylesheet was used
+#' @param input Name of the R object after readLines
 #' @param tags Character vector of tags to add to CSS
-#' @export  
-updateCSS <- function(input, output, customStylesheet = TRUE, tags) {
+updateCSS <- function(input, tags) {
   
+  location <- grep("</style>", tmp)
+  
+  ## split file
+  tmpA <- input[1:(location-1)]
+  tmpB <- input[location:length(input)]
+  
+  ## adding custom CSS
+  tmp <- c(tmpA, tags, tmpB)
+  tmp
 }

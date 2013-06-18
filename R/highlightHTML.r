@@ -8,30 +8,31 @@
 #' 
 #' @param input File name of HTML file to highlight the cells of the table
 #' @param output Output file name of highlighted HTML file
-#' @param customStylesheet TRUE/FALSE variable indicating whether a custom stylesheet was used when converting 
-#'   document to HTML
 #' @param updateCSS TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @parm tags character vector with CSS tags to be added
 #' @importFrom stringr str_replace_all
+#' @examples
+#' tmp <- c("<td> 100 #bgred </td>", "<td> 67 </td>", "<td> 32 #bgblue </td>", "<td> 12 #bgblue </td>", "<td> 55 </td>")
+#' tags <- c("#bgred {background-color: #FF0000;}", "#bgblue {background-color: #0000FF;}")
 #' @export 
-highlightHTMLcells <- function(input, output, customStylesheet = TRUE, updateCSS = FALSE, tags) {
+highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
   ## read in html file
   tmp <- readLines(input)
   
   CSSid <- gsub("\\{.+", "", tags)
+  CSSid <- gsub("^\\s+|\\s+$", "", CSSid)
+  CSSid2 <- paste(" ", CSSid, sep = "")
   
-  ids <- paste("<td id=\\'", CSSid, "\\'>", sep = "")
+  ids <- paste('<td id=', CSSid, '>', sep = "")
   
   for(i in 1:length(CSSid)){
-    #if(customStylesheet == TRUE){  
-     #  locations <- grep(CSSid[i], tmp)[-1]  ## remove the first one if using custom css as it is in the css file
-    #} else {
-      locations <- grep(CSSid[i], tmp)
-    #}
-    
-    tmp[locations] <- gsub("<td>", ids[i], tmp[locations])
-    #tmp[locations] <- str_replace_all(tmp[locations], "<td>", ids[i])
-    tmp[locations] <- gsub(CSSid[i], "", tmp[locations], fixed = TRUE)
+    locations <- grep(CSSid[i], tmp)  # finds locations to add id values
+    tmp[locations] <- gsub("<td>", ids[i], tmp[locations])  # adds the id values
+    tmp[locations] <- gsub(CSSid2[i], "", tmp[locations], fixed = TRUE)
+  }
+  
+  if(updateCSS = TRUE){
+    tmp <- updateCSS(tmp, tags)
   }
   
   if(is.null(output) == TRUE){
