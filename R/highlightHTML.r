@@ -9,14 +9,18 @@
 #' @param input File name of HTML file to highlight the cells of the table
 #' @param output Output file name of highlighted HTML file
 #' @param updateCSS TRUE/FALSE variable indicating whether the CSS should be updated.
-#' @parm tags character vector with CSS tags to be added
-#' @importFrom stringr str_replace_all
+#' @param tags character vector with CSS tags to be added
 #' @examples
-#' tmp <- c("<td> 100 #bgred </td>", "<td> 67 </td>", "<td> 32 #bgblue </td>", "<td> 12 #bgblue </td>", "<td> 55 </td>")
+#' # Example of simple test table
+#' # Change background color of table cells
+#' require(highlightHTML)
 #' tags <- c("#bgred {background-color: #FF0000;}", "#bgblue {background-color: #0000FF;}")
+#' highlightHTMLcells(input = "bgtable.html", output = "bgtable2.html", updateCSS = TRUE, tags = tags)
+#' # Change background color and text color
+#' tags <- c("#bgred {background-color: #FF0000; color: white;}", "#bgblue {background-color: #0000FF; color: white;}")
+#' highlightHTMLcells(input = "bgtable.html", output = "bgtable2.html", updateCSS = TRUE, tags = tags)
 #' @export 
 highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
-  ## read in html file
   tmp <- readLines(input)
   
   CSSid <- gsub("\\{.+", "", tags)
@@ -42,3 +46,22 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
   
   write(tmp, file = output)
 }
+
+
+#' Update external CSS file
+#' 
+#' @param input Name of the R object after readLines
+#' @param tags Character vector of tags to add to CSS
+updateCSS <- function(input, tags) {
+  
+  location <- grep("</style>", input)
+  
+  # # split file
+  tmpA <- input[1:(location-1)]
+  tmpB <- input[location:length(input)]
+  
+  ## adding custom CSS
+  tmp <- c(tmpA, tags, tmpB)
+  tmp
+}
+

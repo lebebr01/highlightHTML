@@ -8,5 +8,5 @@ Description: This package easily highlights specific cells in an HTML table.
 Depends:
     R (>= 3.0.0)
 License: GPL-2
-Suggests: 
-
+Collate:
+    'highlightHTML.r'
