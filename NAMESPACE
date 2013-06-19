@@ -1,1 +1,2 @@
 export(highlightHTMLcells)
+export(rgb2hex)
