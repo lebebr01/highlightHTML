@@ -39,7 +39,7 @@ rgb2hex <- function(rgbcode = NULL, rcolor = NULL) {
   
   names(tmp) <- namescol
 
-  hex <- sapply(lapply(tmp, sprintf, fmt = "%X"), paste, collapse = "")
+  hex <- sapply(lapply(tmp, sprintf, fmt = "%02X"), paste, collapse = "")
   hexP <- data.frame(HexCodes = hex)
   hexP
 }
