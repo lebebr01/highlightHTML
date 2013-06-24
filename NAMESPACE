@@ -1,2 +1,3 @@
 export(highlightHTMLcells)
 export(rgb2hex)
+export(shinyRGB2hex)

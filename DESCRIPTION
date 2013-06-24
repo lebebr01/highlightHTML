@@ -11,3 +11,4 @@ License: GPL-2
 Collate:
     'highlightHTML.r'
     'rgb2hex.r'
+    'runShinyApp.r'
