@@ -10,6 +10,8 @@
 #' @param output Output file name of highlighted HTML file
 #' @param updateCSS TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @param tags character vector with CSS tags to be added
+#' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
+#'    file is written, but not opened in browser. 
 #' @examples
 #' # Example of simple test table
 #' # Change background color of table cells
@@ -37,8 +39,12 @@
 #' # Post-process HTML file
 #' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE, 
 #'   tags = tags)
+#' 
+#' # By default the new file is opened in your default browser, herer set to FALSE
+#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE,
+#'   tags = tags, browse=FALSE)
 #' @export 
-highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
+highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRUE) {
   tmp <- readLines(input)
   
   CSSid <- gsub("\\{.+", "", tags)
@@ -63,6 +69,9 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
   }
   
   write(tmp, file = output)
+
+  if(browse)
+    browseURL(output)
 }
 
 
