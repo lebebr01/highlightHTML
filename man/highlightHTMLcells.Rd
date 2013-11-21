@@ -2,7 +2,8 @@
 \alias{highlightHTMLcells}
 \title{Highlights HTML table cells}
 \usage{
-  highlightHTMLcells(input, output, updateCSS = TRUE, tags)
+  highlightHTMLcells(input, output, updateCSS = TRUE, tags,
+    browse = TRUE)
 }
 \arguments{
   \item{input}{File name of HTML file to highlight the
@@ -14,6 +15,10 @@
   the CSS should be updated.}
 
   \item{tags}{character vector with CSS tags to be added}
+
+  \item{browse}{logical, If TRUE (default) output file
+  opens in default browser, if FALSE, file is written, but
+  not opened in browser.}
 }
 \description{
   Inputs an HTML file and outputs a new HTML file that adds
@@ -54,5 +59,9 @@ tags <- c("#bgred {background-color: #FF0000; color: white;}",
 # Post-process HTML file
 highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE,
   tags = tags)
+
+# By default the new file is opened in your default browser, herer set to FALSE
+highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE,
+  tags = tags, browse=FALSE)
 }
 
