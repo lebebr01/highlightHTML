@@ -14,11 +14,29 @@
 #' # Example of simple test table
 #' # Change background color of table cells
 #' require(highlightHTML)
-#' tags <- c("#bgred {background-color: #FF0000;}", "#bgblue {background-color: #0000FF;}")
-#' highlightHTMLcells(input = "bgtable.html", output = "bgtable2.html", updateCSS = TRUE, tags = tags)
-#' # Change background color and text color
-#' tags <- c("#bgred {background-color: #FF0000; color: white;}", "#bgblue {background-color: #0000FF; color: white;}")
-#' highlightHTMLcells(input = "bgtable.html", output = "bgtable2.html", updateCSS = TRUE, tags = tags)
+#' 
+#' # Setting path for example html files 
+#' # To see path where these are saved, type file1 or file2 in the 
+#' # r console.
+#' file <- system.file('examples', package = 'highlightHTML')
+#' file1 <- paste(file, "bgtable.html", sep = "/")
+#' file2 <- paste(file, "bgtable2.html", sep = "/")
+#' 
+#' # Creating CSS tags to inject into HTML document
+#' tags <- c("#bgred {background-color: #FF0000;}", 
+#'   "#bgblue {background-color: #0000FF;}")
+#'   
+#' # Command to post-process HTML file
+#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE, 
+#'   tags = tags)
+#'   
+#' # Change background color and text color with CSS
+#' tags <- c("#bgred {background-color: #FF0000; color: white;}", 
+#'   "#bgblue {background-color: #0000FF; color: white;}")
+#'   
+#' # Post-process HTML file
+#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE, 
+#'   tags = tags)
 #' @export 
 highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags) {
   tmp <- readLines(input)
