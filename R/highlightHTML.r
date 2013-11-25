@@ -22,25 +22,24 @@
 #' # r console.
 #' file <- system.file('examples', package = 'highlightHTML')
 #' file1 <- paste(file, "bgtable.html", sep = "/")
-#' file2 <- paste(file, "bgtable2.html", sep = "/")
 #' 
 #' # Creating CSS tags to inject into HTML document
 #' tags <- c("#bgred {background-color: #FF0000;}", 
 #'   "#bgblue {background-color: #0000FF;}")
 #'   
-#' # Command to post-process HTML file
-#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE, 
-#'   tags = tags)
+#' # Command to post-process HTML file - Writes to temporary file
+#' highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE, 
+#'   tags = tags, browse = FALSE)
 #'   
 #' # Change background color and text color with CSS
 #' tags <- c("#bgred {background-color: #FF0000; color: white;}", 
 #'   "#bgblue {background-color: #0000FF; color: white;}")
 #'   
 #' # Post-process HTML file
-#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE, 
-#'   tags = tags)
+#' highlightHTMLcells(input = file1, output = NULL, updateCSS = TRUE, 
+#'   tags = tags, browse = TRUE)
 #' 
-#' # By default the new file is opened in your default browser, herer set to FALSE
+#' # By default the new file is opened in your default browser, here set to FALSE
 #' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE,
 #'   tags = tags, browse=FALSE)
 #' @export 
