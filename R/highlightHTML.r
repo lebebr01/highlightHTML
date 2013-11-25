@@ -40,7 +40,7 @@
 #'   tags = tags, browse = TRUE)
 #' 
 #' # By default the new file is opened in your default browser, here set to FALSE
-#' highlightHTMLcells(input = file1, output = file2, updateCSS = TRUE,
+#' highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE,
 #'   tags = tags, browse=FALSE)
 #' @export 
 highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRUE) {
