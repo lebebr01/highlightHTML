@@ -2,7 +2,7 @@
 \alias{rgb2hex}
 \title{Convert RGB to hex}
 \usage{
-  rgb2hex(rgbcode = NULL, rcolor = NULL)
+rgb2hex(rgbcode = NULL, rcolor = NULL)
 }
 \arguments{
   \item{rgbcode}{List of rgb color codes, each list must be
@@ -12,8 +12,8 @@
   \item{rcolor}{A list of R color names}
 }
 \description{
-  Enter a list of RGB color codes, or R colors, and get the
-  appropriate hex color code.
+Enter a list of RGB color codes, or R colors, and get the
+appropriate hex color code.
 }
 \examples{
 rgb2hex(rcolor = list("sienna2", "thistle1"))

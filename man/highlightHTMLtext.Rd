@@ -1,0 +1,52 @@
+\name{highlightHTMLtext}
+\alias{highlightHTMLtext}
+\title{Highlights HTML text}
+\usage{
+highlightHTMLtext(input, output, updateCSS = TRUE, tags, browse = TRUE)
+}
+\arguments{
+  \item{input}{File name of HTML file to highlight the
+  cells of the table}
+
+  \item{output}{Output file name of highlighted HTML file}
+
+  \item{updateCSS}{TRUE/FALSE variable indicating whether
+  the CSS should be updated.}
+
+  \item{tags}{character vector with CSS tags to be added}
+
+  \item{browse}{logical, If TRUE (default) output file
+  opens in default browser, if FALSE, file is written, but
+  not opened in browser.}
+}
+\description{
+Inputs a HTML file and outputs the same HTML file, but now
+with injected CSS to change the appearance of text.
+}
+\details{
+A function that allows the alteration of text in a HTML
+file using CSS. This can be most helpful when converting a
+markdown file to a HTML file to display as a webpage.  The
+function will post process the HTML file to add additional
+formatting without editing the raw HTML file.
+}
+\examples{
+# Example of simple test table
+# Change background color of table cells
+require(highlightHTML)
+
+# Setting path for example html files
+# To see path where these are saved, type file or file1 in the
+# r console.
+file <- system.file('examples', package = 'highlightHTML')
+file1 <- paste(file, "bgtext.html", sep = "/")
+
+# Change background color and text color with CSS
+tags <- c("#bgblack {background-color: black; color: white;}",
+  "#bgblue {background-color: #0000FF; color: white;}")
+
+# Post-process HTML file
+highlightHTMLtext(input = file1, output = NULL, updateCSS = TRUE,
+  tags = tags, browse = TRUE)
+}
+

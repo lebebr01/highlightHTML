@@ -18,7 +18,7 @@
 #' require(highlightHTML)
 #' 
 #' # Setting path for example html files 
-#' # To see path where these are saved, type file1 or file2 in the 
+#' # To see path where these are saved, type file or file1 in the 
 #' # r console.
 #' file <- system.file('examples', package = 'highlightHTML')
 #' file1 <- paste(file, "bgtable.html", sep = "/")
@@ -69,6 +69,71 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRU
   
   write(tmp, file = output)
 
+  if(browse)
+    browseURL(output)
+}
+
+
+#' Highlights HTML text
+#' 
+#' Inputs a HTML file and outputs the same HTML file, but now with injected CSS to 
+#' change the appearance of text.
+#' 
+#' A function that allows the alteration of text in a HTML file using CSS. This can be most helpful
+#' when converting a markdown file to a HTML file to display as a webpage.  The function 
+#' will post process the HTML file to add additional formatting without editing the raw HTML file.
+#' 
+#' @param input File name of HTML file to highlight the cells of the table
+#' @param output Output file name of highlighted HTML file
+#' @param updateCSS TRUE/FALSE variable indicating whether the CSS should be updated.
+#' @param tags character vector with CSS tags to be added
+#' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
+#'    file is written, but not opened in browser. 
+#' @examples
+#' # Example of simple test table
+#' # Change background color of table cells
+#' require(highlightHTML)
+#' 
+#' # Setting path for example html files 
+#' # To see path where these are saved, type file or file1 in the 
+#' # r console.
+#' file <- system.file('examples', package = 'highlightHTML')
+#' file1 <- paste(file, "bgtext.html", sep = "/")
+#' 
+#' # Change background color and text color with CSS
+#' tags <- c("#bgblack {background-color: black; color: white;}", 
+#'   "#bgblue {background-color: #0000FF; color: white;}")
+#'   
+#' # Post-process HTML file
+#' highlightHTMLtext(input = file1, output = NULL, updateCSS = TRUE, 
+#'   tags = tags, browse = TRUE)
+#' @export 
+highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TRUE){
+  tmp <- readLines(input)
+  
+  CSSid <- gsub("\\{.+", "", tags)
+  CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
+  CSSidPaste <- gsub("#", "", CSSid)
+  CSSid2 <- paste(" ", CSSid, sep = "")
+  
+  ids <- paste("<span id='", CSSidPaste, "'>", sep = "")
+  
+  for(i in 1:length(CSSid)){
+    locations <- grep(CSSid[i], tmp)  # finds locations to add id values
+    tmp[locations] <- gsub(paste("\\{", CSSid[i], sep = ''), ids[i], tmp[locations])  # adds the id values
+    tmp[locations] <- gsub("\\}", "</span>", tmp[locations])
+  }
+  
+  if(updateCSS == TRUE){
+    tmp <- updateCSS(tmp, tags)
+  }
+  
+  if(is.null(output) == TRUE){
+    output <- input
+  }
+  
+  write(tmp, file = output)
+  
   if(browse)
     browseURL(output)
 }
