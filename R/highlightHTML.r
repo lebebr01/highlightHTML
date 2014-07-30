@@ -12,6 +12,8 @@
 #' @param tags character vector with CSS tags to be added
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
+#' @param print locical, if TRUE print output to R console, if false (default) output is 
+#'    filtered to other methods (see browse or output).
 #' @examples
 #' # Example of simple test table
 #' # Change background color of table cells
@@ -43,8 +45,10 @@
 #' highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE,
 #'   tags = tags, browse=FALSE)
 #' @export 
-highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRUE) {
-  tmp <- readLines(input)
+highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
+                               print = FALSE) {
+  #tmp <- readLines(input)
+  tmp <- input
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
@@ -67,7 +71,12 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRU
     output <- input
   }
   
-  write(tmp, file = output)
+  if(print) {
+    print.highlightHTML(tmp)
+  } else {
+    write(tmp, file = output)
+  }
+  
 
   if(browse)
     browseURL(output)
@@ -89,6 +98,8 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRU
 #' @param tags character vector with CSS tags to be added
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
+#' @param print locical, if TRUE print output to R console, if false (default) output is 
+#'    filtered to other methods (see browse or output).
 #' @examples
 #' # Example of simple test table
 #' # Change background color of table cells
@@ -108,8 +119,9 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse=TRU
 #' highlightHTMLtext(input = file1, output = NULL, updateCSS = TRUE, 
 #'   tags = tags, browse = TRUE)
 #' @export 
-highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TRUE){
-  tmp <- readLines(input)
+highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
+                              print = FALSE){
+  #tmp <- readLines(input)
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)

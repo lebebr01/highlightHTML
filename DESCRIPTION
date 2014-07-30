@@ -12,3 +12,5 @@ Collate:
     'highlightHTML.r'
     'rgb2hex.r'
     'runShinyApp.r'
+    'highlightHTMLmaster.r'
+    'print.highlightHTML.r'
