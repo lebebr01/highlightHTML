@@ -2,9 +2,7 @@
 #' 
 #' Prints highlightHTML object
 #' 
-#' @param x The highlightHTML object
-#' @method print highlightHTML
-#' @export print highlightHTML
+#' @export
 print.highlightHTML <- function(x, ...) {
-  cat(paste(x, collapse = "\n"), "\n")
+  cat(format(x, ...), sep = "\n")
 }

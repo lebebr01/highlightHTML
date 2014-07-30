@@ -18,7 +18,7 @@ highlightHTML(input, output, updateCSS = TRUE, tags, browse = TRUE,
 \item{browse}{logical, If TRUE (default) output file opens in default browser, if FALSE,
 file is written, but not opened in browser.}
 
-\item{print}{locical, if TRUE print output to R console, if false (default) output is
+\item{print}{logical, if TRUE print output to R console, if false (default) output is
    filtered to other methods (see browse or output).}
 }
 \description{

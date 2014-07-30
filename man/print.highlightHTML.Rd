@@ -5,9 +5,6 @@
 \usage{
 \method{print}{highlightHTML}(x, ...)
 }
-\arguments{
-\item{x}{The highlightHTML object}
-}
 \description{
 Prints highlightHTML object
 }

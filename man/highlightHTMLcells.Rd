@@ -54,10 +54,10 @@ tags <- c("#bgred {background-color: #FF0000; color: white;}",
 
 # Post-process HTML file
 highlightHTMLcells(input = file1, output = NULL, updateCSS = TRUE,
-  tags = tags, browse = TRUE)
+  tags = tags, browse = TRUE, print = FALSE)
 
 # By default the new file is opened in your default browser, here set to FALSE
 highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE,
-  tags = tags, browse=FALSE)
+  tags = tags, browse=FALSE, print = FALSE)
 }
 

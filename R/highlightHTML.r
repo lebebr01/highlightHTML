@@ -39,11 +39,11 @@
 #'   
 #' # Post-process HTML file
 #' highlightHTMLcells(input = file1, output = NULL, updateCSS = TRUE, 
-#'   tags = tags, browse = TRUE)
+#'   tags = tags, browse = TRUE, print = FALSE)
 #' 
 #' # By default the new file is opened in your default browser, here set to FALSE
 #' highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE,
-#'   tags = tags, browse=FALSE)
+#'   tags = tags, browse=FALSE, print = FALSE)
 #' @export 
 highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
                                print = FALSE) {
@@ -71,15 +71,15 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = T
     output <- input
   }
   
-  if(print) {
-    print.highlightHTML(tmp)
+  if(print == TRUE) {
+    #class(tmp) <- "highlightHTML"
+    tmp
   } else {
     write(tmp, file = output)
-  }
-  
-
-  if(browse)
-    browseURL(output)
+    if(browse) {
+      browseURL(output)
+    } 
+  }   
 }
 
 
@@ -122,6 +122,7 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = T
 highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
                               print = FALSE){
   #tmp <- readLines(input)
+  tmp <- input
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
@@ -155,9 +156,10 @@ highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TR
 #' 
 #' @param input Name of the R object after readLines
 #' @param tags Character vector of tags to add to CSS
+#' @export
 updateCSS <- function(input, tags) {
   
-  location <- grep("</style>", input)
+  location <- grep("</style>", input, ignore.case = TRUE)
   
   # # split file
   tmpA <- input[1:(location-1)]
