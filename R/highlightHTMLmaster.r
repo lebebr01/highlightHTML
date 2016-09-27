@@ -17,6 +17,7 @@
 #' @param print logical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
 #' @examples
+#' \donttest{
 #' # Example of simple test table
 #' # Change background color of table cells
 #' library(highlightHTML)
@@ -61,6 +62,7 @@
 #' # Post-process HTML file
 #' highlight_html(input = file1, output = tempfile(fileext = ".html"), update_css = TRUE, 
 #'   tags = tags, browse = TRUE)
+#' }
 #'   
 #' @export
 highlight_html <- function(input, output, update_css = TRUE, tags, browse = TRUE, 

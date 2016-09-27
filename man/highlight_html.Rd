@@ -33,6 +33,7 @@ a specific criteria.  This function handles both tables as well as normal text.
 The options are only limited based on your knowledge of CSS.
 }
 \examples{
+\donttest{
 # Example of simple test table
 # Change background color of table cells
 library(highlightHTML)
@@ -77,6 +78,7 @@ tags <- c("#bgblack {background-color: black; color: white;}",
 # Post-process HTML file
 highlight_html(input = file1, output = tempfile(fileext = ".html"), update_css = TRUE, 
   tags = tags, browse = TRUE)
+}
   
 }
 
