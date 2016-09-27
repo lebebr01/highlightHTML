@@ -44,6 +44,7 @@
 #' # By default the new file is opened in your default browser, here set to FALSE
 #' highlightHTMLcells(input = file1, output = tempfile(fileext = ".html"), updateCSS = TRUE,
 #'   tags = tags, browse=FALSE, print = FALSE)
+#' @importFrom utils browseURL
 #' @export 
 highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
                                print = FALSE) {
@@ -118,6 +119,7 @@ highlightHTMLcells <- function(input, output, updateCSS = TRUE, tags, browse = T
 #' # Post-process HTML file
 #' highlightHTMLtext(input = file1, output = NULL, updateCSS = TRUE, 
 #'   tags = tags, browse = TRUE)
+#' @importFrom utils browseURL
 #' @export 
 highlightHTMLtext <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
                               print = FALSE){

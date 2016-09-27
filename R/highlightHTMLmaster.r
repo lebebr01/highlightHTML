@@ -18,13 +18,14 @@
 #'    filtered to other methods (see browse or output).
 #' 
 #' @export
-highlightHTML <- function(input, output, updateCSS = TRUE, tags, browse = TRUE) {
+highlightHTML <- function(input, output, updateCSS = TRUE, tags, browse = TRUE, 
+                          print = FALSE) {
   
   tmp2 <- readLines(input)
   
   tmp2 <- highlightHTMLcells(input = tmp2, output = output, updateCSS = FALSE, 
                        tags, browse = FALSE, print = TRUE)
-  highlightHTMLtext(input = tmp2, output, updateCSS, tags, browse)
+  highlightHTMLtext(input = tmp2, output, updateCSS, tags, browse, print)
   
   
 }
