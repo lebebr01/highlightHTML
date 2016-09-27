@@ -6,7 +6,7 @@ The aim of the `highlightHTML` package is to make it easy for users to customize
 Installing the package:
 ```{r install, eval=FALSE}
 library(devtools)
-install_github(repo = "highlightHTML", username = "lebebr01")
+install_github('lebebr01/highlightHTML')
 ```
 
 This package post processes the html file produced from a markdown document.  Suppose you have a table like the following:
@@ -31,7 +31,7 @@ The addition of the *#bgblue* and *#bgred* indicates which cells will be changed
 
 ```{r function, eval=FALSE}
 library(hightlightHTML)
-highlightHTMLcells(input = "path/to/file", output = "path/to/saved/file", updateCSS = TRUE, tags = c("Vector of CSS code here"))
+highlight_html(input = "path/to/file", output = "path/to/saved/file", updateCSS = TRUE, tags = c("Vector of CSS code here"))
 ```
 
 This function should read in the html file to process.  Then it processes the file add the id tags to the specific cells identified.  Lastly if **updateCSS = TRUE**, then the tags will be added to the CSS of the document, otherwise if **FALSE** that will need to be added manually to the html file.  The file is then save to the output location, if no output location is given, the input file will be overwritten.
