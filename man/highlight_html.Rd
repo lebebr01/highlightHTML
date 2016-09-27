@@ -35,7 +35,7 @@ The options are only limited based on your knowledge of CSS.
 \examples{
 # Example of simple test table
 # Change background color of table cells
-library(highlight_html)
+library(highlightHTML)
 
 # Setting path for example html files 
 # To see path where these are saved, type file or file1 in the 
