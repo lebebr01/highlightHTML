@@ -1,15 +1,15 @@
 Package: highlightHTML
-Title: Highlight HTML Tables
-Version: 0.3
-Author: Brandon LeBeau <lebea027@umn.edu> [aut,cre]
-Maintainer: Brandon LeBeau <lebea027@umn.edu>
+Title: Highlight HTML Text and Tables
+Version: 0.4.0
+Author: Brandon LeBeau <lebebr01+highlightHTML@gmail.com> [aut,cre]
+Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
 Description: This package easily highlights specific cells in an HTML table.
     This may be helpful for those using markdown to create HTML tables.
 Depends:
     R (>= 3.0.0)
 Suggests:
     shiny
-License: GPL-2
+License: MIT + file LICENSE
 Collate:
     'highlightHTML.r'
     'rgb2hex.r'

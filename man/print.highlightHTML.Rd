@@ -6,6 +6,11 @@
 \usage{
 \method{print}{highlightHTML}(x, ...)
 }
+\arguments{
+\item{x}{An object from highlightHTML function.}
+
+\item{...}{Additional arguments passed to function.}
+}
 \description{
 Prints highlightHTML object
 }
