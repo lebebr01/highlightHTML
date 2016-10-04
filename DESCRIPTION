@@ -8,7 +8,8 @@ Description: This package easily highlights specific cells in an HTML table.
 Depends:
     R (>= 3.0.0)
 Suggests:
-    shiny
+    shiny,
+    testthat
 License: MIT + file LICENSE
 Collate:
     'highlightHTML.r'

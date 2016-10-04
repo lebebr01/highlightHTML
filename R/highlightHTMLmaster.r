@@ -25,8 +25,7 @@
 #' # Setting path for example html files 
 #' # To see path where these are saved, type file or file1 in the 
 #' # r console.
-#' file <- system.file('examples', package = 'highlight_html')
-#' file1 <- paste(file, "bgtable.html", sep = "/")
+#' file <- system.file('examples', 'bgtable.html', package = 'highlightHTML')
 #' 
 #' # Creating CSS tags to inject into HTML document
 #' tags <- c("#bgred {background-color: #FF0000;}", 
@@ -51,8 +50,7 @@
 #' # Setting path for example html files 
 #' # To see path where these are saved, type file or file1 in the 
 #' # r console.
-#' file <- system.file('examples', package = 'highlight_html')
-#' file1 <- paste(file, "bgtext.html", sep = "/")
+#' file <- system.file('examples', 'bgtext.html', package = 'highlightHTML')
 #' 
 #' # Change background color and text color with CSS
 #' tags <- c("#bgblack {background-color: black; color: white;}", 
