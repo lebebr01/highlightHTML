@@ -14,27 +14,27 @@
 #' @export 
 rgb2hex <- function(rgbcode = NULL, rcolor = NULL) {
   
-  if(is.null(rcolor) == FALSE){
-    if(is.list(rcolor) == FALSE) { rcolor <- as.list(rcolor) }
+  if(!is.null(rcolor)){
+    if(!is.list(rcolor)) { rcolor <- as.list(rcolor) }
     tmp <- lapply(lapply(rcolor, col2rgb), as.numeric)
   }
   
-  if(is.null(rcolor) == TRUE & is.null(rgbcode) == FALSE){ 
+  if(is.null(rcolor) & !is.null(rgbcode)){ 
     tmp <- rgbcode 
   }
   
-  if(is.null(names(rgbcode)) == TRUE) {
+  if(is.null(names(rgbcode))) {
     namescol <- paste("Color ", 1:length(rgbcode), sep = "")
   } else {
     namescol <- names(rgbcode)
   }
   
-  if(is.null(rcolor) == FALSE & is.null(rgbcode) == FALSE){
+  if(!is.null(rcolor) & !is.null(rgbcode)){
     tmp <- c(rgbcode, tmp)
     namescol <- c(names(rgbcode), rcolor)
   }
   
-  if(is.null(rcolor) == FALSE & is.null(rgbcode) == TRUE){
+  if(!is.null(rcolor) & is.null(rgbcode)){
     namescol <- rcolor
   }  
   
