@@ -17,4 +17,5 @@ Collate:
     'runShinyApp.r'
     'highlightHTMLmaster.r'
     'print.highlightHTML.r'
+    'table_inject.r'
 RoxygenNote: 5.0.1
