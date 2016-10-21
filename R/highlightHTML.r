@@ -18,7 +18,6 @@
 #' @export 
 highlight_html_cells <- function(x, output, update_css = TRUE, tags, browse = TRUE, 
                                print = FALSE) {
-  tmp <- x
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
@@ -28,19 +27,19 @@ highlight_html_cells <- function(x, output, update_css = TRUE, tags, browse = TR
   ids <- paste("<td id='", CSSidPaste, "'", sep = "")
   
   for(i in 1:length(CSSid)){
-    locations <- grep(CSSid[i], tmp)  # finds locations to add id values
-    tmp[locations] <- gsub("<td", ids[i], tmp[locations])  # adds the id values
-    tmp[locations] <- gsub(CSSid2[i], "", tmp[locations], fixed = TRUE)
+    locations <- grep(CSSid[i], x)  # finds locations to add id values
+    x[locations] <- gsub("<td", ids[i], x[locations])  # adds the id values
+    x[locations] <- gsub(CSSid2[i], "", x[locations], fixed = TRUE)
   }
   
   if(update_css){
-    tmp <- update_css(tmp, tags)
+    x <- update_css(x, tags)
   }
   
   if(print) {
-    tmp
+    x
   } else {
-    write(tmp, file = output)
+    write(x, file = output)
     if(browse) {
       browseURL(output)
     } 
@@ -69,7 +68,6 @@ highlight_html_cells <- function(x, output, update_css = TRUE, tags, browse = TR
 #' @export 
 highlight_html_text <- function(x, output, update_css = TRUE, tags, browse = TRUE, 
                               print = FALSE){
-  tmp <- x
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
@@ -79,19 +77,19 @@ highlight_html_text <- function(x, output, update_css = TRUE, tags, browse = TRU
   ids <- paste("<span id='", CSSidPaste, "'>", sep = "")
   
   for(i in 1:length(CSSid)){
-    locations <- grep(CSSid[i], tmp)  # finds locations to add id values
-    tmp[locations] <- gsub(paste("\\{", CSSid[i], sep = ''), ids[i], tmp[locations])  # adds the id values
-    tmp[locations] <- gsub("\\}", "</span>", tmp[locations])
+    locations <- grep(CSSid[i], x)  # finds locations to add id values
+    x[locations] <- gsub(paste("\\{", CSSid[i], sep = ''), ids[i], x[locations])  # adds the id values
+    x[locations] <- gsub("\\}", "</span>", x[locations])
   }
   
   if(update_css){
-    tmp <- update_css(tmp, tags)
+    x <- update_css(x, tags)
   }
   
   if(print) {
-    tmp
+    x
   } else {
-    write(tmp, file = output)
+    write(x, file = output)
     if(browse) {
       browseURL(output)
     } 
