@@ -18,4 +18,17 @@ table_id_inject(x, id, conditions, variable = NULL)
 \description{
 A helper function to include a hashtag id code within an R table.
 }
+\examples{
+library(dplyr)
+library(highlightHTML)
+
+summ_table <- mtcars \%>\% 
+  group_by(cyl) \%>\% 
+  summarise(avg_mpg = mean(mpg), sd_mpg = sd(mpg)) \%>\%
+  data.frame()
+  
+  table_id_inject(summ_table, id = c('#bgred', '#bgblue'), 
+  conditions = c('< 2', '> 16'))
+  
+}
 

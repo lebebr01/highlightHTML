@@ -1,6 +1,6 @@
 Package: highlightHTML
 Title: Highlight HTML Text and Tables
-Version: 0.1.0
+Version: 0.1.1
 Author: Brandon LeBeau <lebebr01+highlightHTML@gmail.com> [aut,cre]
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
 Description: This package easily highlights specific cells in an HTML table.
@@ -9,7 +9,8 @@ Depends:
     R (>= 3.0.0)
 Suggests:
     shiny,
-    testthat
+    testthat,
+    dplyr
 License: MIT + file LICENSE
 Collate:
     'highlightHTML.r'
