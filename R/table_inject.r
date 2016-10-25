@@ -33,14 +33,13 @@ table_id_inject <- function(x, id, conditions, variable = NULL) {
   
   locations <- lapply(seq_along(id), function(xx) 
     ifelse(eval(parse(text = paste_cond[[xx]])), TRUE, FALSE))
-  
-  x2 <- x
+
   for(xx in seq_along(locations)) {
-    x2[locations[[xx]] == TRUE] <- paste(x2[locations[[xx]] == TRUE], id[xx])
+    x[locations[[xx]] == TRUE] <- paste(xs[locations[[xx]] == TRUE], id[xx])
   }
   # lapply(seq_along(locations), function(xx) 
   #     x2[locations[[xx]] == TRUE] <- paste(x2[locations[[xx]] == TRUE], id[xx])
   #   )
   
-  return(x2)
+  return(x)
 }
