@@ -1,0 +1,22 @@
+---
+title: "The Basics of highlightHTML"
+author: "Brandon LeBeau"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Have you ever wanted to include some form of highlighting, either conditional or nonconditional, to a html document? If so, this package may be worthwhile to you. The `highlightHTML` package inject CSS into the HTML document automatically via ids (more information on CSS ids here: <http://www.cssbasics.com/css-ids/>). 
+
+# Basic Example
+Suppose you have a table like the following:
+
+| Color Name | Number       |
+|----------- | ------------ |
+| Blue       |  5           |
+| Green      |  35          |
+| Orange     |  100         |
+| Red        |  200         |

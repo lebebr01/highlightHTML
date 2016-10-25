@@ -10,7 +10,9 @@ Depends:
 Suggests:
     shiny,
     testthat,
-    dplyr
+    dplyr,
+    knitr,
+    rmarkdown
 License: MIT + file LICENSE
 Collate:
     'highlightHTML.r'
@@ -20,3 +22,4 @@ Collate:
     'print.highlightHTML.r'
     'table_inject.r'
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
