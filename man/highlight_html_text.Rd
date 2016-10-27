@@ -4,7 +4,7 @@
 \alias{highlight_html_text}
 \title{Highlights HTML text}
 \usage{
-highlight_html_text(x, output, update_css = TRUE, tags, browse = TRUE,
+highlight_html_text(x, output, tags, update_css = TRUE, browse = TRUE,
   print = FALSE)
 }
 \arguments{
@@ -12,9 +12,9 @@ highlight_html_text(x, output, update_css = TRUE, tags, browse = TRUE,
 
 \item{output}{Output file name of highlighted HTML file}
 
-\item{update_css}{TRUE/FALSE variable indicating whether the CSS should be updated.}
-
 \item{tags}{character vector with CSS tags to be added}
+
+\item{update_css}{TRUE/FALSE variable indicating whether the CSS should be updated}
 
 \item{browse}{logical, If TRUE (default) output file opens in default browser, if FALSE, 
 file is written, but not opened in browser.}

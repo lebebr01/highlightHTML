@@ -8,16 +8,16 @@
 #' 
 #' @param x File name of HTML file to highlight the cells of the table
 #' @param output Output file name of highlighted HTML file
-#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @param tags character vector with CSS tags to be added
+#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
 #' @param print locical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
 #' @importFrom utils browseURL
 #' @export 
-highlight_html_cells <- function(x, output, update_css = TRUE, tags, browse = TRUE, 
-                               print = FALSE) {
+highlight_html_cells <- function(x, output, tags, update_css = TRUE, 
+                                 browse = TRUE, print = FALSE) {
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
@@ -58,16 +58,16 @@ highlight_html_cells <- function(x, output, update_css = TRUE, tags, browse = TR
 #' 
 #' @param x File name of HTML file to highlight the cells of the table
 #' @param output Output file name of highlighted HTML file
-#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @param tags character vector with CSS tags to be added
+#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
 #' @param print locical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
 #' @importFrom utils browseURL
 #' @export 
-highlight_html_text <- function(x, output, update_css = TRUE, tags, browse = TRUE, 
-                              print = FALSE){
+highlight_html_text <- function(x, output, tags, update_css = TRUE, 
+                                browse = TRUE, print = FALSE){
   
   CSSid <- gsub("\\{.+", "", tags)
   CSSid <- gsub("^[\\s+]|\\s+$", "", CSSid)
