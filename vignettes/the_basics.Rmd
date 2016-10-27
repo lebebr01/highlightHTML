@@ -20,3 +20,57 @@ Suppose you have a table like the following:
 | Green      |  35          |
 | Orange     |  100         |
 | Red        |  200         |
+
+You could then add some conditional formatting by adding the following tags to the table.
+
+| Color Name | Number       |
+|----------- | ------------ |
+| Blue       |  5  #bgblue  |
+| Green      |  35          |
+| Orange     |  100         |
+| Red        |  200 #bgred  |
+
+The addition of the *#bgblue* and *#bgred* indicates which cells will be changed. After turning the markdown document into an html file, this package can now be used to post-process the html file. The post-processing will add an id value for each cell with the *#bgblue* or *#bgred* and remove those from the table. 
+
+The function to use for the post-processing is `highlight_html` and requires three arguments, the input file, the output file, and the CSS tags themselves. This will look something like the following using an example file from the package:
+
+```{r function, eval=FALSE}
+library(hightlightHTML)
+file <- system.file('examples', 'bgtable.html', 
+                    package = 'highlightHTML')
+tags <- c("#bgred {background-color: #FF0000;}", 
+  "#bgblue {background-color: #0000FF;}")
+highlight_html(input = file, 
+               output = tempfile(fileext = ".html"), 
+               tags = tags,
+               update_css = TRUE, 
+               browse = TRUE,
+               print = FALSE)
+```
+
+In the above `highlight_html` function call, the input file is saved to a temporary file. The `update_css` argument will inject the tags into the html document within any style tags that are found within the document. The `browse` argument will open the resulting post-processed file in the default browser to be viewed directly. Finally, the `print` argument if TRUE, will print the html output to the R console. This may be useful for verification of potential errors in the post-processing.
+
+## Formatting tables directly from R
+There is also a function that helps facilitate the formatting of R tables with conditional formating called `table_id_inject`.
+
+# Formatting Text
+Formatting text is also simple in a markdown document. Braces `{}` are used to single text that should be formatted. Then, the addition of an id tag to link this to the CSS formatting. 
+
+For example, perhaps there is {#colgold some text} to turn gold. In the following example, the text "some text" would be processed to turn into gold using the CSS id #colgold. Another example file can be run with the following commands:
+```{r text, eval = FALSE}
+file <- system.file('examples', 'bgtext.html', package = 'highlightHTML')
+
+# Change background color and text color with CSS
+tags <- c("#bgblack {background-color: black; color: white;}", 
+  "#bgblue {background-color: #0000FF; color: white;}",
+  "#colgreen {color: green;}")
+  
+# Post-process HTML file
+highlight_html(input = file, output = tempfile(fileext = ".html"),
+               tags = tags, update_css = TRUE, browse = TRUE)
+```
+
+The same argument calls are valid as discussed above when post-processing tables.
+
+# From Markdown to HTML directly.
+
