@@ -5,10 +5,11 @@
 \title{Master highlight HTML function}
 \usage{
 highlight_html(input, output, tags, update_css = TRUE, browse = TRUE,
-  print = FALSE)
+  print = FALSE, render = FALSE)
 }
 \arguments{
-\item{input}{File name of HTML file to highlight the cells of the table or text}
+\item{input}{File name of HTML file to highlight the cells of the table or text. 
+Alternatively, if render = TRUE, a Rmd or md file can be specified as the input.}
 
 \item{output}{Output file name of highlighted HTML file}
 
@@ -21,6 +22,9 @@ file is written, but not opened in browser.}
 
 \item{print}{logical, if TRUE print output to R console, if false (default) output is 
 filtered to other methods (see browse or output).}
+
+\item{render}{logical, if TRUE will call the rmarkdown::render() function to 
+convert Rmd or md files to html prior to injecting CSS.}
 }
 \description{
 This function inputs and exports an HTML file.  The HTML file is then processed
@@ -76,6 +80,15 @@ tags <- c("#bgblack {background-color: black; color: white;}",
 # Post-process HTML file
 highlight_html(input = file, output = tempfile(fileext = ".html"), 
   tags = tags, update_css = TRUE, browse = TRUE)
+  
+# Use of render
+file <- system.file('examples', 'mwe.md', package = 'highlightHTML')
+tags <- c("#bgred {background-color: #FF0000; color: white;}",
+   "#bgblue {background-color: #0000FF; color: white;}",
+   "#bgblack {background-color: #000000; color: white;}",
+   "#colgold {color: #FFD700;}")
+highlight_html(input = file, output = tempfile(fileext = '.html'),
+  tags = tags, update_css = TRUE, browse = TRUE, render = TRUE)
 }
   
 }
