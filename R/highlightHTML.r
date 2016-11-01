@@ -1,21 +1,3 @@
-#' Highlights HTML table cells
-#' 
-#' Inputs an HTML file and outputs a new HTML file that adds css to highlight background of table cells.
-#' 
-#' A function that allows the alteration of cells in an HTML table using CSS.  This may be helpful
-#' coming from a markdown or R markdown file to highlight certain cells based on a specific criteria,
-#' such as values greater than 85 should be highlighted as blue or text color changed to green.
-#' 
-#' @param x File name of HTML file to highlight the cells of the table
-#' @param output Output file name of highlighted HTML file
-#' @param tags character vector with CSS tags to be added
-#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated.
-#' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
-#'    file is written, but not opened in browser. 
-#' @param print logical, if TRUE print output to R console, if false (default) output is 
-#'    filtered to other methods (see browse or output).
-#' @importFrom utils browseURL
-#' @export
 highlight_html_cells <- function(x, output, tags, update_css = TRUE, 
                                  browse = TRUE, print = FALSE) {
   
@@ -47,25 +29,6 @@ highlight_html_cells <- function(x, output, tags, update_css = TRUE,
 }
 
 
-#' Highlights HTML text
-#' 
-#' Inputs a HTML file and outputs the same HTML file, but now with injected CSS to 
-#' change the appearance of text.
-#' 
-#' A function that allows the alteration of text in a HTML file using CSS. This can be most helpful
-#' when converting a markdown file to a HTML file to display as a webpage.  The function 
-#' will post process the HTML file to add additional formatting without editing the raw HTML file.
-#' 
-#' @param x File name of HTML file to highlight the cells of the table
-#' @param output Output file name of highlighted HTML file
-#' @param tags character vector with CSS tags to be added
-#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated
-#' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
-#'    file is written, but not opened in browser. 
-#' @param print logical, if TRUE print output to R console, if false (default) output is 
-#'    filtered to other methods (see browse or output).
-#' @importFrom utils browseURL
-#' @export
 highlight_html_text <- function(x, output, tags, update_css = TRUE, 
                                 browse = TRUE, print = FALSE){
   
