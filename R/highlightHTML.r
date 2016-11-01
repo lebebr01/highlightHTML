@@ -12,10 +12,10 @@
 #' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated.
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
-#' @param print locical, if TRUE print output to R console, if false (default) output is 
+#' @param print logical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
 #' @importFrom utils browseURL
-#' @export 
+#' @export
 highlight_html_cells <- function(x, output, tags, update_css = TRUE, 
                                  browse = TRUE, print = FALSE) {
   
@@ -62,10 +62,10 @@ highlight_html_cells <- function(x, output, tags, update_css = TRUE,
 #' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
-#' @param print locical, if TRUE print output to R console, if false (default) output is 
+#' @param print logical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
 #' @importFrom utils browseURL
-#' @export 
+#' @export
 highlight_html_text <- function(x, output, tags, update_css = TRUE, 
                                 browse = TRUE, print = FALSE){
   
@@ -94,24 +94,5 @@ highlight_html_text <- function(x, output, tags, update_css = TRUE,
       browseURL(output)
     } 
   }  
-}
-
-
-#' Update external CSS file
-#' 
-#' @param x Name of the R object after readLines
-#' @param tags Character vector of tags to add to CSS
-#' @export
-update_css <- function(x, tags) {
-  
-  location <- max(grep("</style>", x, ignore.case = TRUE))
-  
-  # # split file
-  tmpA <- x[1:(location - 1)]
-  tmpB <- x[location:length(x)]
-  
-  ## adding custom CSS
-  tmp <- c(tmpA, tags, tmpB)
-  tmp
 }
 

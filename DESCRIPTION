@@ -3,8 +3,10 @@ Title: Highlight HTML Text and Tables
 Version: 0.1.1
 Author: Brandon LeBeau <lebebr01+highlightHTML@gmail.com> [aut,cre]
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
-Description: This package easily highlights specific cells in an HTML table.
-    This may be helpful for those using markdown to create HTML tables.
+Description: A tool to highlight specific cells in an HTML table or more 
+    generally text from an html document. this may be helpful for those 
+    using markdown to create reproducible documents. In addition, the ability
+    to compile directly from Rmd files is also possible.
 Depends:
     R (>= 3.0.0)
 Suggests:
@@ -14,12 +16,5 @@ Suggests:
     knitr,
     rmarkdown
 License: MIT + file LICENSE
-Collate:
-    'highlightHTML.r'
-    'rgb2hex.r'
-    'runShinyApp.r'
-    'highlightHTMLmaster.r'
-    'print.highlightHTML.r'
-    'table_inject.r'
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
