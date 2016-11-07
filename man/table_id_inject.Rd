@@ -13,7 +13,9 @@ table_id_inject(x, id, conditions, variable = NULL)
 
 \item{conditions}{A vector of conditions to include id. Must be same length as id}
 
-\item{variable}{An optional vector of column names to specify search of conditions.}
+\item{variable}{An optional list of column names to specify search of conditions. More
+than one variable can be specified in each element of the list. The list must be the 
+same length as the conditions or id arguments.}
 }
 \description{
 A helper function to include a hashtag id code within an R table.
@@ -27,8 +29,12 @@ summ_table <- mtcars \%>\%
   summarise(avg_mpg = mean(mpg), sd_mpg = sd(mpg)) \%>\%
   data.frame()
   
-  table_id_inject(summ_table, id = c('#bgred', '#bgblue'), 
+table_id_inject(summ_table, id = c('#bgred', '#bgblue'), 
   conditions = c('< 2', '> 16'))
+  
+table_id_inject(summ_table, id = c('#bgred', '#bgblue'),
+  conditions = c('< 2', '< 16'), 
+  variable = list(c('sd_mpg'), c('avg_mpg')))  
   
 }
 
