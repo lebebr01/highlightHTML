@@ -52,6 +52,12 @@ table_id_inject <- function(x, id, conditions, variable = NULL) {
     
     for(xx in seq_along(locations)) {
       for(ii in seq_along(locations[[xx]])) {
+        if(any(grepl("#", x[locations[[xx]][[ii]] == TRUE, 
+                            variable[[xx]][[ii]]]))) {
+          x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]] <-
+            gsub("\\s+#.+", "", x[locations[[xx]][[ii]] == TRUE, 
+                                variable[[xx]][[ii]]])
+        }
         x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]] <- 
           paste(x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]], id[xx])
       }
