@@ -1,7 +1,9 @@
 Package: highlightHTML
+Type: Package
 Title: Highlight HTML Text and Tables
 Version: 0.1.1
-Author: Brandon LeBeau <lebebr01+highlightHTML@gmail.com> [aut,cre]
+Authors@R: person("Brandon", "LeBeau", email = "lebebr01+highlightHTML@gmail.com",
+               role = c("aut", "cre"))
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
 Description: A tool to highlight specific cells in an HTML table or more 
     generally text from an HTML document. This may be helpful for those 
@@ -18,3 +20,6 @@ Suggests:
 License: MIT + file LICENSE
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
+URL: https://github.com/lebebr01/highlightHTML
+BugReports: https://github.com/lebebr01/highlightHTML/issues
+
