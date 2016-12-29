@@ -28,7 +28,7 @@ highlight_html_cells <- function(x, output, tags, update_css = TRUE,
   }   
 }
 
-
+#' @importFrom utils browseURL
 highlight_html_text <- function(x, output, tags, update_css = TRUE, 
                                 browse = TRUE, print = FALSE){
   
