@@ -1,3 +1,8 @@
+## Resubmission
+This is a resubmission. In this version I have: 
+
+* Rewrote DESCRIPTION description to use quotes on software.
+
 ## Test Environments
 * local windows install, R 3.3.2
 * r-hub (devel and release)

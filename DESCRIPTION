@@ -8,7 +8,8 @@ Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
 Description: A tool to highlight specific cells in an HTML table or more 
     generally text from an HTML document. This may be helpful for those 
     using markdown to create reproducible documents. In addition, the ability
-    to compile directly from Rmd files is also possible using the knitr package.
+    to compile directly from R markdown files is also possible using the 'knitr' 
+    package.
 Depends:
     R (>= 3.0.0)
 Suggests:
