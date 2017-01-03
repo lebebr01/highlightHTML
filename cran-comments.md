@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have: 
 
-* Rewrote DESCRIPTION description to use quotes on software.
+* Updated LICENSE elements to all caps.
 
 ## Test Environments
 * local windows install, R 3.3.2
