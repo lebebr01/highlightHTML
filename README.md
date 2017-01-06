@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/lebebr01/highlightHTML.svg?branch=master)](https://travis-ci.org/lebebr01/highlightHTML)
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
+[![DOI](https://zenodo.org/badge/10693628.svg)](https://zenodo.org/badge/latestdoi/10693628)
 
 The aim of the `highlightHTML` package is to make it easy for users to customize HTML tables by using a single function that adds an `id` selector to the table cell tag.  The ability to customize the HTML table is limited the functionality of CSS and the user knowledge of CSS.   This package was motivated by latest push of using markdown documents which allow the user to focus on content instead of using something like LaTeX where choices between fonts and styling may take a larger role.  This package is motivated by that in that it allows a seemless way to interact with an HTML file to add table decoration.
 
