@@ -35,7 +35,7 @@ The addition of the *#bgblue* and *#bgred* indicates which cells will be changed
 The function to use for the post-processing is `highlight_html` and requires three arguments, the input file, the output file, and the CSS tags themselves. This will look something like the following using an example file from the package:
 
 ```{r function, eval=FALSE}
-library(hightlightHTML)
+library(highlightHTML)
 file <- system.file('examples', 'bgtable.html', 
                     package = 'highlightHTML')
 tags <- c("#bgred {background-color: #FF0000;}", 
