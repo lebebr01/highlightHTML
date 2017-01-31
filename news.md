@@ -1,5 +1,9 @@
 # highlightHTML
 
+## v 0.1.3
+- Update to include example of 'Rmd' to 'HTML' directly.
+- Updated JOSS paper submission.
+
 ## v 0.1.2
 - Fix bug when multiple matches were passed to `table_id_inject` function. See issue #4 on GitHub for more details.
 
