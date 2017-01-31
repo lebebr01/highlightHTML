@@ -59,7 +59,8 @@ table_id_inject <- function(x, id, conditions, variable = NULL) {
                                 variable[[xx]][[ii]]])
         }
         x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]] <- 
-          paste(x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]], id[xx])
+          paste(unlist(x[locations[[xx]][[ii]] == TRUE, variable[[xx]][[ii]]]), 
+                       id[xx])
       }
     }
   }
