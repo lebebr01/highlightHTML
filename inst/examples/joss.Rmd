@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Simple Markup
 The `highlightHTML` packages allows for {#bggrey simple markup} to add formatting to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
 
-```{r symm, echo = FALSE}
+```{r symm, echo = FALSE, results = 'asis'}
 library(dplyr)
 library(highlightHTML)
 
@@ -21,9 +21,10 @@ chick_tab <- chickwts %>%
   summarise(avg_weight = mean(weight),
             sd_weight = sd(weight))
 
-table_id_inject(chick_tab, id = c('#bggrey', '#bgblack'), 
-                conditions = c('> 270', '> 300'),
-                variable = list('avg_weight', 'avg_weight'))
+knitr::kable(table_id_inject(chick_tab, id = c('#bggrey', '#bgblack', '#bglightred'), 
+                conditions = c('> 270', '> 300', '> 60'),
+                variable = list('avg_weight', 'avg_weight', 'sd_weight')),
+             format = 'markdown')
 ```
 
 
