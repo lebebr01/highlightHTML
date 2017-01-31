@@ -73,4 +73,17 @@ highlight_html(input = file, output = tempfile(fileext = ".html"),
 The same argument calls are valid as discussed above when post-processing tables.
 
 # From Markdown to HTML directly.
+The package also supports rendering directly from (R)markdown to HTML directly. This functionality uses functionality built directly into the rmarkdown package. Using the file, 'joss.Rmd' in the examples from the package, we can directly compile this file from R Markdown directly to HTML with the following `highlight_html` arugments.
+
+```{r html, eval = FALSE}
+file <- system.file('examples', 'joss.Rmd', package = 'highlightHTML')
+
+tags <- c('#bgblack {background-color: black; color: white;}',
+          '#bggrey {background-color: #d3d3d3;}',
+          '#bglightred {background-color: #FF6666;}')
+
+highlight_html(input = file, output = tempfile(fileext = ".html"),
+               tags = tags, update_css = TRUE, browse = TRUE, 
+               render = TRUE)
+```
 

@@ -23,3 +23,14 @@
 #  highlight_html(input = file, output = tempfile(fileext = ".html"),
 #                 tags = tags, update_css = TRUE, browse = TRUE)
 
+## ----html, eval = FALSE--------------------------------------------------
+#  file <- system.file('examples', 'joss.Rmd', package = 'highlightHTML')
+#  
+#  tags <- c('#bgblack {background-color: black; color: white;}',
+#            '#bggrey {background-color: #d3d3d3;}',
+#            '#bglightred {background-color: #FF6666;}')
+#  
+#  highlight_html(input = file, output = tempfile(fileext = ".html"),
+#                 tags = tags, update_css = TRUE, browse = TRUE,
+#                 render = TRUE)
+

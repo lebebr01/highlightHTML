@@ -168,6 +168,16 @@ tags &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&q
 </div>
 <div id="from-markdown-to-html-directly." class="section level1">
 <h1>From Markdown to HTML directly.</h1>
+<p>The package also supports rendering directly from (R)markdown to HTML directly. This functionality uses functionality built directly into the rmarkdown package. Using the file, ‘joss.Rmd’ in the examples from the package, we can directly compile this file from R Markdown directly to HTML with the following <code>highlight_html</code> arugments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'examples'</span>, <span class="st">'joss.Rmd'</span>, <span class="dt">package =</span> <span class="st">'highlightHTML'</span>)
+
+tags &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'#bgblack {background-color: black; color: white;}'</span>,
+          <span class="st">'#bggrey {background-color: #d3d3d3;}'</span>,
+          <span class="st">'#bglightred {background-color: #FF6666;}'</span>)
+
+<span class="kw">highlight_html</span>(<span class="dt">input =</span> file, <span class="dt">output =</span> <span class="kw">tempfile</span>(<span class="dt">fileext =</span> <span class="st">&quot;.html&quot;</span>),
+               <span class="dt">tags =</span> tags, <span class="dt">update_css =</span> <span class="ot">TRUE</span>, <span class="dt">browse =</span> <span class="ot">TRUE</span>, 
+               <span class="dt">render =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 
 
