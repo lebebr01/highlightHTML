@@ -1,0 +1,23 @@
+{
+  "@context": "https://raw.githubusercontent.com/mbjones/codemeta/master/codemeta.jsonld",
+  "@type": "Code",
+  "author": [
+    {
+      "@id": "orcid.org/0000-0002-1265-8761",
+      "@type": "Person",
+      "email": "brandon-lebeau@uiowa.edu",
+      "name": "Brandon LeBeau",
+      "affiliation": "University of Iowa"
+    }
+  ],
+  "identifier": "https://doi.org/10.5281/zenodo.265701",
+  "codeRepository": "https://github.com/lebebr01/highlightHTML",
+  "datePublished": "2017-01-31",
+  "dateModified": "2017-01-31",
+  "dateCreated": "2017-01-31",
+  "description": "highlightHTML: CSS Formatting of R Markdown Documents",
+  "keywords": "software, CSS, reproducible",
+  "license": "MIT",
+  "title": "highlightHTML",
+  "version": "v0.1.3"
+}
