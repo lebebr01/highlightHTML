@@ -12,7 +12,7 @@
 
 <meta name="author" content="Brandon LeBeau" />
 
-<meta name="date" content="2016-10-27" />
+<meta name="date" content="2017-01-31" />
 
 <title>The Basics of highlightHTML</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">The Basics of highlightHTML</h1>
 <h4 class="author"><em>Brandon LeBeau</em></h4>
-<h4 class="date"><em>2016-10-27</em></h4>
+<h4 class="date"><em>2017-01-31</em></h4>
 
 
 
@@ -133,7 +133,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </table>
 <p>The addition of the <em>#bgblue</em> and <em>#bgred</em> indicates which cells will be changed. After turning the markdown document into an html file, this package can now be used to post-process the html file. The post-processing will add an id value for each cell with the <em>#bgblue</em> or <em>#bgred</em> and remove those from the table.</p>
 <p>The function to use for the post-processing is <code>highlight_html</code> and requires three arguments, the input file, the output file, and the CSS tags themselves. This will look something like the following using an example file from the package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hightlightHTML)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(highlightHTML)
 file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'examples'</span>, <span class="st">'bgtable.html'</span>, 
                     <span class="dt">package =</span> <span class="st">'highlightHTML'</span>)
 tags &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#bgred {background-color: #FF0000;}&quot;</span>, 

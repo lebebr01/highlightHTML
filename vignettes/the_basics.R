@@ -1,5 +1,5 @@
 ## ----function, eval=FALSE------------------------------------------------
-#  library(hightlightHTML)
+#  library(highlightHTML)
 #  file <- system.file('examples', 'bgtable.html',
 #                      package = 'highlightHTML')
 #  tags <- c("#bgred {background-color: #FF0000;}",
