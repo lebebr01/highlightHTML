@@ -3,17 +3,25 @@
 [![Build Status](https://travis-ci.org/lebebr01/highlightHTML.svg?branch=master)](https://travis-ci.org/lebebr01/highlightHTML)
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
-[![DOI](https://zenodo.org/badge/10693628.svg)](https://zenodo.org/badge/latestdoi/10693628)
 
 The aim of the `highlightHTML` package is to make it easy for users to customize HTML tables by using a single function that adds an `id` selector to the table cell tag.  The ability to customize the HTML table is limited the functionality of CSS and the user knowledge of CSS.   This package was motivated by latest push of using markdown documents which allow the user to focus on content instead of using something like LaTeX where choices between fonts and styling may take a larger role.  This package is motivated by that in that it allows a seemless way to interact with an HTML file to add table decoration.
 
-## Usage 
+## Installation 
 Installing the package:
 
 ```r
-library(devtools)
-install_github('lebebr01/highlightHTML')
+install.packages("highlightHTML")
 ```
+
+or the development version with devtools:
+
+```r
+devtools::install_github('lebebr01/highlightHTMl')
+```
+
+
+
+## Usage
 
 This package post processes the html file produced from a markdown document.  Suppose you have a table like the following:
 
@@ -38,7 +46,27 @@ The addition of the *#bgblue* and *#bgred* indicates which cells will be changed
 
 ```r
 library(hightlightHTML)
-highlight_html(input = "path/to/file", output = "path/to/saved/file", updateCSS = TRUE, tags = c("Vector of CSS code here"))
+file <- system.file('examples', 'bgtable.html', 
+                    package = 'highlightHTML')
+
+tags <- c("#bgred {background-color: #FF0000;}", 
+  "#bgblue {background-color: #0000FF;}")
+
+highlight_html(input = file, 
+               output = tempfile(fileext = ".html"), 
+               tags = tags,
+               update_css = TRUE, 
+               browse = TRUE,
+               print = FALSE)
 ```
 
 This function should read in the html file to process.  Then it processes the file add the id tags to the specific cells identified.  Lastly if **updateCSS = TRUE**, then the tags will be added to the CSS of the document, otherwise if **FALSE** that will need to be added manually to the html file.  The file is then save to the output location, if no output location is given, the input file will be overwritten.
+
+## Vignette
+Additional examples can be found in the vignette called, The Basics. This file give more information and examples. The vignette should come with the package when installed from CRAN, however, if you are using the developmental version from GitHub, you may need to tell the installer to build the vignette directly:
+
+
+```r
+devtools::install_github('lebebr01/highlightHTML', build_vignettes = TRUE)
+```
+
