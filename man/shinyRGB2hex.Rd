@@ -12,4 +12,3 @@ shinyRGB2hex(...)
 \description{
 Function that automatically opens shiny app to convert rgb codes to hexidecimal codes
 }
-

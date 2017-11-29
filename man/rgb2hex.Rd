@@ -8,9 +8,10 @@ rgb2hex(rgbcode = NULL, rcolor = NULL)
 }
 \arguments{
 \item{rgbcode}{List of rgb color codes, each list must be a vector of three objects representing
-the three components of rgb color code from 0 - 255.}
+the three components of rgb color code from 0 - 255. This can be a named list where the name
+represents the name of the color to be used.}
 
-\item{rcolor}{A list of R color names}
+\item{rcolor}{An unnamed list of R color names.}
 }
 \description{
 Enter a list of RGB color codes, or R colors, and get the appropriate hex color code.
@@ -21,4 +22,3 @@ rgb2hex(rcolor = list("sienna2", "thistle1"), rgbcode = list('orange' = c(238, 7
 'raw umber' = c(113, 75, 35)))
 rgb2hex(rgbcode = list('orange' = c(238, 74, 24), 'raw umber' = c(113, 75, 35)))
 }
-

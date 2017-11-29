@@ -16,15 +16,16 @@ The `highlightHTML` packages allows for {#bggrey simple markup} to add formattin
 library(dplyr)
 library(highlightHTML)
 
-chick_tab <- chickwts %>%
+chickwts %>%
   group_by(feed) %>%
   summarise(avg_weight = mean(weight),
-            sd_weight = sd(weight))
-
-knitr::kable(table_id_inject(chick_tab, id = c('#bggrey', '#bgblack', '#bglightred'), 
-                conditions = c('> 270', '> 300', '> 60'),
-                variable = list('avg_weight', 'avg_weight', 'sd_weight')),
-             format = 'markdown')
+            sd_weight = sd(weight)) %>%
+  mutate(feed = as.character(feed)) %>%
+  table_id_inject(id = c('#bggrey', '#bgblack', '#bglightred', '#textblue'), 
+                conditions = c('> 270', '> 300', '> 60', '== "horsebean"'),
+                variable = list('avg_weight', 'avg_weight', 'sd_weight', 'feed'),
+                num_digits = 3) %>%
+  knitr::kable(format = 'markdown')
 ```
 
 

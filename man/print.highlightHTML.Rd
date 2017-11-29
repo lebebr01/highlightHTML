@@ -14,4 +14,3 @@
 \description{
 Prints highlightHTML object
 }
-

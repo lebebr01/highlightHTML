@@ -4,7 +4,9 @@
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
 
-The aim of the `highlightHTML` package is to make it easy for users to customize HTML tables by using a single function that adds an `id` selector to the table cell tag.  The ability to customize the HTML table is limited the functionality of CSS and the user knowledge of CSS.   This package was motivated by latest push of using markdown documents which allow the user to focus on content instead of using something like LaTeX where choices between fonts and styling may take a larger role.  This package is motivated by that in that it allows a seemless way to interact with an HTML file to add table decoration.
+The aim of the `highlightHTML` package is to add some additional formatting to (R)markdown documents to customize the formatting output of HTML files. The syntax uses HTML `id` selectors and Cascading Style Sheets (CSS) specified by the user to add formatting to the HTML output file. The ability to customize the HTML table is limited the functionality of CSS and the user knowledge of CSS. 
+
+The hightlightHTML package fits nicely into the workflow of a reproducible research report as the package can dynamically insert the ids into summary tables with R code. In addition, text can be modified directly with simple syntax. Compilation from rmarkdown or markdown to HTML can be done directly from the package which makes use of the render function from the rmarkdown package. Installation and usage details are shown in more detail below.
 
 ## Installation 
 Installing the package:
@@ -16,54 +18,94 @@ install.packages("highlightHTML")
 or the development version with devtools:
 
 ```r
+install.packages("devtools")
 devtools::install_github('lebebr01/highlightHTMl')
 ```
 
-
-
 ## Usage
 
-This package post processes the html file produced from a markdown document.  Suppose you have a table like the following:
+As mentioned above, text and summary tables can be formatted using CSS ids. The CSS ids are inserted into text by using braces (i.e. \{) with a CSS id hashtag following the opening brace (e.g. \{#bggrey example\}). In the previous example, the word "example" would be identified with the CSS id #bggrey and could be formated using CSS. 
 
-Color Name | Number
------------ | ------------
-Blue | 5
-Green | 35
-Orange | 100
-Red | 200
+There are two ways to create formatting within a markdown summary table. One is useful if the markdown summary table is created manually (i.e. type by hand). In this scenario you simply need to add the hashtag to the desired cell of the summary table. Perhaps the more common workflow for adding hashtags to a summary table would be dynamically with R code. To do this, the function `table_id_inject` is used to create conditional arguments for adding the hashtags to a markdown summary table. This is shown in more detail with the example below.
 
-To use this package there are two steps, first indicate which cells you would like to change the appearance using CSS (i.e. background color, text color, etc.) by including the name of the id value to pass that cell or cells.  Using the above table example suppose we want to change the number column to blue and red for numbers less than 10 and greater than 150 respectively:
+## Simple Example of Package Workflow
 
-Color Name | Number
------------ | ------------
-Blue | 5 #bgblue
-Green | 35
-Orange | 100
-Red | 200 #bgred
+Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a table using R code and the `table_id_inject` function. 
 
-The addition of the *#bgblue* and *#bgred* indicates which cells will be changed.  After turning the markdown document into an html file, this package can now be used to post-process the html file.  The post-processing will add an id value for each cell with the *#bgblue* or *#bgred* and remove those from the table.  This will look something like:
+````
+---
+title: "Rmd to HTML"
+author: "Brandon LeBeau"
+date: "January 13, 2017"
+output: html_document
+---
+
+## Simple Markup
+The `highlightHTML` packages allows for {#bggrey simple markup} to add formatting to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
+
+```{r symm, echo = FALSE, results = 'asis', message = FALSE}
+library(dplyr)
+library(highlightHTML)
+
+chickwts %>%
+  group_by(feed) %>%
+  summarise(avg_weight = mean(weight),
+            sd_weight = sd(weight)) %>%
+  mutate(feed = as.character(feed)) %>%
+  table_id_inject(id = c('#bggrey', '#bgblack', '#bglightred', '#textblue'), 
+                conditions = c('> 270', '> 300', '> 60', '== "horsebean"'),
+                variable = list('avg_weight', 'avg_weight', 'sd_weight', 'feed'),
+                num_digits = 3) %>%
+  knitr::kable(format = 'markdown')
+```
+````
+
+The resulting summary table would look like the following in markdown:
+
+|feed                |avg_weight       |sd_weight          |
+|:-------------------|:----------------|:------------------|
+|casein              |323.583 #bgblack |64.434 #bglightred |
+|horsebean #textblue |160.2            |38.626             |
+|linseed             |218.75           |52.236             |
+|meatmeal            |276.909 #bggrey  |64.901 #bglightred |
+|soybean             |246.429          |54.129             |
+|sunflower           |328.917 #bgblack |48.836             |
+
+It is worth discussing the `table_id_inject` function in more detail here. The function takes two required arguments, `id` and `conditionals` and two optional arguments, `variable` and `num_digits`. The two required arguments are a vector of CSS ids (e.g. #bggrey) and a vector of conditional expressions that are evaluated to identify the location to insert the CSS id. These two arguments must be the same length and the CSS id and conditional expression are matched by location. That is, the first element of each argument are matched, the second element of each, and so on. The optional argument, `variable`, specifies which column(s) of the data to evaluate the conditional expression on. By default this argument is empty meaning that all columns are evaluated. If a CSS id is specific to a specific column(s), this argument specified as a list can be included. Finally, the optional `num_digits` argument is used to round the numeric columns. See `round` for more details.
+
+Finally, the Rmd file itself can be passed to the `highlight_html` function which will automatically compile the input file into an HTML output file. The `highlight_html` function takes three main arguments, the path to the input Rmd file (can also be a markdown or HTML file), the path to save the output HTML file, and the CSS styling to be used for the formatting. Below is the example of processing the simple example shown above. 
 
 
 ```r
-library(hightlightHTML)
-file <- system.file('examples', 'bgtable.html', 
-                    package = 'highlightHTML')
+library(highlightHTML)
+file <- system.file('examples', 'joss.Rmd', package = 'highlightHTML')
 
-tags <- c("#bgred {background-color: #FF0000;}", 
-  "#bgblue {background-color: #0000FF;}")
+tags <- c('#bgblack {background-color: black; color: white;}',
+          '#bggrey {background-color: #d3d3d3;}',
+          '#bglightred {background-color: #FF6666;}',
+          '#textblue {color: blue}')
 
-highlight_html(input = file, 
-               output = tempfile(fileext = ".html"), 
-               tags = tags,
-               update_css = TRUE, 
-               browse = TRUE,
-               print = FALSE)
+highlight_html(input = file, output = tempfile(fileext = ".html"),
+               tags = tags, browse = TRUE, 
+               render = TRUE)
 ```
 
-This function should read in the html file to process.  Then it processes the file add the id tags to the specific cells identified.  Lastly if **updateCSS = TRUE**, then the tags will be added to the CSS of the document, otherwise if **FALSE** that will need to be added manually to the html file.  The file is then save to the output location, if no output location is given, the input file will be overwritten.
+The results HTML output file now looks like the following:
+
+![joss output](inst/examples/joss_output.png)
+
+Finally, the `highlight_html` function has an optional argument called `browse`. This argument is a TRUE/FALSE flag, which defaults to TRUE, to indicate whether the HTML output file should be opened in the default browser upon successful compilation. This can be a good way to view the file to ensure the desired formatting was achieved.
 
 ## Vignette
-Additional examples can be found in the vignette called, The Basics. This file give more information and examples. The vignette should come with the package when installed from CRAN, however, if you are using the developmental version from GitHub, you may need to tell the installer to build the vignette directly:
+Additional examples can be found in the vignette called, The Basics. This file give more information and examples. The vignette should come with the package when installed from CRAN. 
+
+
+```r
+vignette('the_basics', package = 'highlightHTML')
+```
+
+
+If you are using the developmental version from GitHub, you may need to tell the installer to build the vignette directly:
 
 
 ```r

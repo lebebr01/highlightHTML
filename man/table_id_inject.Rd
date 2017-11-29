@@ -2,39 +2,74 @@
 % Please edit documentation in R/table_inject.r
 \name{table_id_inject}
 \alias{table_id_inject}
-\title{Table hash addition}
+\title{Table hash addition for markup}
 \usage{
-table_id_inject(x, id, conditions, variable = NULL)
+table_id_inject(table, id, conditions, variable = NULL, num_digits = NULL)
 }
 \arguments{
-\item{x}{A table object}
+\item{table}{A summary table object, most commonly will be a data.frame, but can also
+be a count table using the \code{table} function.}
 
 \item{id}{A vector of css id(s) to include}
 
-\item{conditions}{A vector of conditions to include id. Must be same length as id}
+\item{conditions}{A character vector of conditions to include id. Must be same length as id. See 
+details and examples for more information on how to specify the conditions.}
 
 \item{variable}{An optional list of column names to specify search of conditions. More
 than one variable can be specified in each element of the list. The list must be the 
 same length as the conditions or id arguments.}
+
+\item{num_digits}{A numeric value to specify the number of decimal values to 
+include in the final output.}
 }
 \description{
-A helper function to include a hashtag id code within an R table.
+A helper function to include a hashtag id code within a summary table. The summary table 
+most commonly will take the form of a data frame object. For example,
+a descriptive summary table coming from the \code{summarise} function from  
+the dplyr package. Can also specify a count table using the \code{table} function.
+}
+\details{
+The \code{conditions} argument takes the following operators for numeric variables: 
+\code{>}, \code{>=}, \code{<}, \code{<=}, \code{==}. For character variables, 
+only \code{==} can be used to specify the text string to match on. Care needs to be 
+made to wrap ensure the text string is wrapped in quotations. See the examples 
+for more details on this.
+
+This function can also be part of a chain using the \code{\%>\%} operator from magrittr. 
+See the examples for more details.
 }
 \examples{
 library(dplyr)
 library(highlightHTML)
 
-summ_table <- mtcars \%>\% 
+mtcars \%>\% 
   group_by(cyl) \%>\% 
   summarise(avg_mpg = mean(mpg), sd_mpg = sd(mpg)) \%>\%
-  data.frame()
+  data.frame() \%>\% 
+  table_id_inject(id = c('#bgred', '#bgblue', '#bggreen'), 
+     conditions = c('< 2', '> 16', '== 15.1'))
   
-table_id_inject(summ_table, id = c('#bgred', '#bgblue'), 
-  conditions = c('< 2', '> 16'))
+
+mtcars \%>\% 
+  group_by(cyl) \%>\% 
+  summarise(avg_mpg = mean(mpg), sd_mpg = sd(mpg)) \%>\%
+  data.frame() \%>\%
+  table_id_inject(id = c('#bgred', '#bgblue'),
+     conditions = c('<= 2', '< 16'), 
+     variable = list(c('sd_mpg'), c('avg_mpg')))  
   
-table_id_inject(summ_table, id = c('#bgred', '#bgblue'),
-  conditions = c('< 2', '< 16'), 
-  variable = list(c('sd_mpg'), c('avg_mpg')))  
+# text example
+storms \%>\%
+  group_by(status) \%>\%
+  summarise(avg_wind = mean(wind)) \%>\%
+  data.frame() \%>\%
+  table_id_inject(id = c('#bgred'),
+     conditions = c('== "tropical depression"'))
+     
+     
+# Table object
+table(mtcars$cyl, mtcars$disp) \%>\%
+  table_id_inject(id = c('#bgred'), 
+                conditions = c('>= 3'))
   
 }
-

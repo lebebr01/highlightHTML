@@ -1,15 +1,14 @@
 Package: highlightHTML
 Type: Package
 Title: Highlight HTML Text and Tables
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: person("Brandon", "LeBeau", email = "lebebr01+highlightHTML@gmail.com",
                role = c("aut", "cre"))
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
-Description: A tool to highlight specific cells in an HTML table or more 
-    generally text from an HTML document. This may be helpful for those 
-    using markdown to create reproducible documents. In addition, the ability
-    to compile directly from R markdown files is also possible using the 'knitr' 
-    package.
+Description: A tool to format R markdown with CSS ids for HTML output. 
+    The tool may be most helpful for those using markdown to create reproducible
+    documents. The biggest limitations in formatting is the knowledge of CSS
+    by the document authors.
 Depends:
     R (>= 3.0.0)
 Suggests:
@@ -19,8 +18,7 @@ Suggests:
     knitr,
     rmarkdown
 License: MIT + file LICENSE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 URL: https://github.com/lebebr01/highlightHTML
 BugReports: https://github.com/lebebr01/highlightHTML/issues
-

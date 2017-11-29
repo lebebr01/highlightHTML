@@ -6,3 +6,7 @@ test_that('correct structure', {
                             rgbcode = list('orange' = c(238, 74, 24),
                                            'raw umber' = c(113, 75, 35)))), 4)
 })
+
+test_that("error parsing", {
+  expect_error(rgb2hex())
+})

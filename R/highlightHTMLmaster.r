@@ -1,23 +1,23 @@
 #' Master highlight HTML function
 #' 
-#' This function inputs and exports an HTML file.  The HTML file is then processed
-#' to search for tags that inject CSS automatically into the HTML file.
+#' This function inputs a markdown or rmarkdown document and exports an HTML file. 
+#' The HTML file is then processed to search for tags that inject CSS automatically 
+#' into the HTML file.
 #' 
-#' A function that allows the alteration of HTML using CSS.  This may be helpful
+#' A function that allows the alteration of HTML using CSS. This may be helpful
 #' coming from a markdown or R markdown file to alter aspects of the page based on 
-#' a specific criteria.  This function handles both tables as well as normal text.  
+#' a specific criteria. This function handles both tables as well as normal text.  
 #' The options are only limited based on your knowledge of CSS.
 #' 
-#' @param input File name of HTML file to highlight the cells of the table or text. 
-#'    Alternatively, if render = TRUE, a Rmd or md file can be specified as the input.
+#' @param input File name of markdown or rmarkdown file to highlight the cells of the table or text. 
+#'    Alternatively, if render = FALSE, a HTML file can be specified as the input.
 #' @param output Output file name of highlighted HTML file
 #' @param tags character vector with CSS tags to be added
-#' @param update_css TRUE/FALSE variable indicating whether the CSS should be updated
 #' @param browse logical, If TRUE (default) output file opens in default browser, if FALSE, 
 #'    file is written, but not opened in browser. 
 #' @param print logical, if TRUE print output to R console, if false (default) output is 
 #'    filtered to other methods (see browse or output).
-#' @param render logical, if TRUE will call the rmarkdown::render() function to 
+#' @param render logical, if TRUE (default) will call the rmarkdown::render() function to 
 #'    convert Rmd or md files to html prior to injecting CSS.
 #' @examples
 #' \donttest{
@@ -36,7 +36,7 @@
 #'   
 #' # Command to post-process HTML file - Writes to temporary file
 #' highlight_html(input = file, output = tempfile(fileext = ".html"),  
-#'   tags = tags, update_css = TRUE, browse = FALSE)
+#'   tags = tags, browse = FALSE)
 #'   
 #' # Change background color and text color with CSS
 #' tags <- c("#bgred {background-color: #FF0000; color: white;}", 
@@ -48,7 +48,7 @@
 #' 
 #' # By default the new file is opened in your default browser, here set to FALSE
 #' highlight_html(input = file, output = tempfile(fileext = ".html"), 
-#'   tags = tags, update_css = TRUE, browse = FALSE, print = FALSE)
+#'   tags = tags, browse = FALSE, print = FALSE)
 #'   
 #' # Setting path for example html files 
 #' # To see path where these are saved, type file or file1 in the 
@@ -62,7 +62,7 @@
 #'   
 #' # Post-process HTML file
 #' highlight_html(input = file, output = tempfile(fileext = ".html"), 
-#'   tags = tags, update_css = TRUE, browse = TRUE)
+#'   tags = tags, browse = TRUE)
 #'   
 #' # Use of render
 #' file <- system.file('examples', 'mwe.md', package = 'highlightHTML')
@@ -71,25 +71,30 @@
 #'    "#bgblack {background-color: #000000; color: white;}",
 #'    "#colgold {color: #FFD700;}")
 #' highlight_html(input = file, output = tempfile(fileext = '.html'),
-#'   tags = tags, update_css = TRUE, browse = TRUE, render = TRUE)
+#'   tags = tags, browse = TRUE, render = TRUE)
 #' }
 #'   
 #' @export
-highlight_html <- function(input, output, tags, update_css = TRUE, 
-                           browse = TRUE, print = FALSE,
-                           render = FALSE) {
+highlight_html <- function(input, output, tags, browse = TRUE, print = FALSE,
+                           render = TRUE) {
+  if(missing(output)) {
+    warning("output file name not specified, defaults to <input>_out.html")
+    output <- gsub("\\.md$|\\.Rmd", "_out\\.html", input)
+  }
+  
   if(render) {
     rmarkdown::render(input = input, output_format = 'html_document',
                       output_file = output)
-    tmp2 <- readLines(output)
+    text_output <- readLines(output)
   } else {
-    tmp2 <- readLines(input)
+    text_output <- readLines(input)
   }
   
-  tmp2 <- highlight_html_cells(x = tmp2, output = output, tags,
+  text_output <- highlight_html_cells(input = text_output, output = output, tags,
                                update_css = FALSE, 
                              browse = FALSE, print = TRUE)
-  highlight_html_text(x = tmp2, output, tags, update_css, browse, print)
+  highlight_html_text(input = text_output, output, tags, update_css = TRUE, 
+                      browse, print)
   
 }
   
