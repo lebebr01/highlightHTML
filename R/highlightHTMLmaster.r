@@ -78,8 +78,8 @@
 highlight_html <- function(input, output, tags, browse = TRUE, print = FALSE,
                            render = TRUE) {
   if(missing(output)) {
-    warning("output file name not specified, defaults to <input>_out.html")
     output <- gsub("\\.md$|\\.Rmd", "_out\\.html", input)
+    message("output file path not specified, file saved to ", output)
   }
   
   if(render) {
