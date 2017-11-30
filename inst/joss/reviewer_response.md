@@ -1,7 +1,7 @@
 Review Response
 -----------
 
-Thanks @daattali for the thoughtful comments and suggestions. In general the following aspects have been adjusted in view of your comments. The README has been significantly adjusted to better reflect the purpose of the package and more typical use cases. The vignette has also been expanded to discuss the `table_id_inject` function in more detail and the source of the input file is shown. Lastly, the code has been adjusted to help improve debugging (i.e. more informative names internally, `&` changed to `&&` where relevant). More specifics are given below in each of these three areas.
+Thanks @daattali for the thoughtful comments and suggestions. In general the following aspects have been adjusted based on your comments. The README has been significantly adjusted to better reflect the purpose of the package and more typical use cases. The vignette has also been expanded to discuss the `table_id_inject` function in more detail and the source of the input file is shown. Lastly, the code has been adjusted to help improve debugging (i.e. more informative names internally, `&` changed to `&&` where relevant). More specifics are given below in each of these three areas.
 
 ## README
 
