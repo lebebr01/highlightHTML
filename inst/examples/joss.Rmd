@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Simple Markup
-The `highlightHTML` packages allows for {#bggrey simple markup} to add formatting to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
+The `highlightHTML` packages allows for {#bggrey simple markup} to add styling to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
 
 ```{r symm, echo = FALSE, results = 'asis', message = FALSE}
 library(dplyr)

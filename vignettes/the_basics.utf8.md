@@ -1,7 +1,7 @@
 ---
 title: "The Basics of highlightHTML"
 author: "Brandon LeBeau"
-date: "`r Sys.Date()`"
+date: "2017-11-30"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -36,7 +36,8 @@ The addition of the *#bgblue* and *#bgred* indicates which cells will be changed
 
 The function to use for the post-processing is `highlight_html` and requires three arguments, the input file, the output file, and the CSS tags themselves. This will look something like the following using an example file from the package:
 
-```{r function, eval=FALSE}
+
+```r
 library(highlightHTML)
 file <- system.file('examples', 'bgtable.html', 
                     package = 'highlightHTML')
@@ -61,7 +62,8 @@ Styling text is also simple in a markdown document. Braces `{}` are used to iden
 For example, perhaps there is `{#colgold some text}` to turn gold. In the previous example, the text "some text" would be processed to be styled using the CSS id #colgold. 
 
 Another example file can be run with the following commands to show more text styling examples:
-```{r text, eval = FALSE}
+
+```r
 file <- system.file('examples', 'bgtext.html', package = 'highlightHTML')
 
 # Change background color and text color with CSS
@@ -96,7 +98,7 @@ output: html_document
 ## Simple Markup
 The `highlightHTML` packages allows for {#bggrey simple markup} to add styling to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
 
-```{r symm, echo = FALSE, results = 'asis', message = FALSE}`r ''`
+```{r symm, echo = FALSE, results = 'asis', message = FALSE}
 library(dplyr)
 library(highlightHTML)
 
@@ -114,27 +116,22 @@ chickwts %>%
 ````
 
 The resulting summary table would look like the following in markdown:
-```{r symm, echo = FALSE, results = 'asis', message = FALSE}
-library(dplyr)
-library(highlightHTML)
 
-chickwts %>%
-  group_by(feed) %>%
-  summarise(avg_weight = mean(weight),
-            sd_weight = sd(weight)) %>%
-  mutate(feed = as.character(feed)) %>%
-  table_id_inject(id = c('#bggrey', '#bgblack', '#bglightred', '#textblue'), 
-                conditions = c('> 270', '> 300', '> 60', '== "horsebean"'),
-                variable = list('avg_weight', 'avg_weight', 'sd_weight', 'feed'),
-                num_digits = 3) %>%
-  knitr::kable(format = 'markdown')
-```
+|feed                |avg_weight       |sd_weight          |
+|:-------------------|:----------------|:------------------|
+|casein              |323.583 #bgblack |64.434 #bglightred |
+|horsebean #textblue |160.2            |38.626             |
+|linseed             |218.75           |52.236             |
+|meatmeal            |276.909 #bggrey  |64.901 #bglightred |
+|soybean             |246.429          |54.129             |
+|sunflower           |328.917 #bgblack |48.836             |
 
 It is worth discussing the `table_id_inject` function in more detail here. The function takes two required arguments, `id` and `conditionals` and two optional arguments, `variable` and `num_digits`. The two required arguments are a vector of CSS ids (e.g. #bggrey) and a vector of conditional expressions that are evaluated to identify the location to insert the CSS id. These two arguments must be the same length and the CSS id and conditional expression are matched by location. That is, the first element of each argument are matched, the second element of each, and so on. The optional argument, `variable`, specifies which column(s) of the data to evaluate the conditional expression on. By default this argument is empty meaning that all columns are evaluated. If a CSS id is specific to a specific column(s), this argument specified as a list can be included. Finally, the optional `num_digits` argument is used to round the numeric columns. See `round` for more details.
 
 Finally, the Rmd file itself can be passed to the `highlight_html` function which will automatically compile the input file into an HTML output file. The `highlight_html` function takes three main arguments, the path to the input Rmd file (can also be a markdown or HTML file), the path to save the output HTML file, and the CSS styling to be used for the styling Below is the example of processing the simple example shown above. 
 
-```{r joss_compile, eval=FALSE}
+
+```r
 library(highlightHTML)
 file <- system.file('examples', 'joss.Rmd', package = 'highlightHTML')
 

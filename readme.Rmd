@@ -4,7 +4,7 @@
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
 
-The aim of the `highlightHTML` package is to add some additional formatting to (R)markdown documents to customize the formatting output of HTML files. The syntax uses HTML `id` selectors and Cascading Style Sheets (CSS) specified by the user to add formatting to the HTML output file. The ability to customize the HTML table is limited the functionality of CSS and the user knowledge of CSS. 
+The highlightHTML package adds markdown syntax to allow for additional styling of (R)markdown documents with HTML output files. The syntax uses HTML id selectors and Cascading Style Sheets (CSS) specified by the user to add the desired style to the HTML output file. The ability to customize the HTML file is limited by the user knowledge of CSS and the ability of CSS to style a given element. 
 
 The hightlightHTML package fits nicely into the workflow of a reproducible research report as the package can dynamically insert the ids into summary tables with R code. In addition, text can be modified directly with simple syntax. Compilation from rmarkdown or markdown to HTML can be done directly from the package which makes use of the render function from the rmarkdown package. Installation and usage details are shown in more detail below.
 
@@ -22,13 +22,13 @@ devtools::install_github('lebebr01/highlightHTMl')
 
 ## Usage
 
-As mentioned above, text and summary tables can be formatted using CSS ids. The CSS ids are inserted into text by using braces (i.e. \{) with a CSS id hashtag following the opening brace (e.g. \{#bggrey example\}). In the previous example, the word "example" would be identified with the CSS id #bggrey and could be formated using CSS. 
+As mentioned above, text and summary tables can be styled using CSS ids. The CSS ids are inserted into text by using braces (i.e. \{) with a CSS id hashtag following the opening brace (e.g. \{#bggrey example\}). In the previous example, the word "example" would be identified with the CSS id #bggrey and could be styled using CSS. 
 
-There are two ways to create formatting within a markdown summary table. One is useful if the markdown summary table is created manually (i.e. type by hand). In this scenario you simply need to add the hashtag to the desired cell of the summary table. Perhaps the more common workflow for adding hashtags to a summary table would be dynamically with R code. To do this, the function `table_id_inject` is used to create conditional arguments for adding the hashtags to a markdown summary table. This is shown in more detail with the example below.
+There are two ways to create styling within a markdown summary table. The first option is useful if the markdown summary table is created manually (i.e. type by hand). In this scenario you simply need to add the hashtag to the desired cell of the summary table. Perhaps the more common workflow for adding hashtags to a summary table would be dynamically with R code. To do this, the function `table_id_inject` is used to create conditional arguments for adding the hashtags to a markdown summary table. This is shown in more detail with the example below.
 
 ## Simple Example of Package Workflow
 
-Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a table using R code and the `table_id_inject` function. 
+Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a table using R code and the `table_id_inject` function. The summary table below is calculating the mean and standard deviation of the chick weights by different feed types. You can imagine creating a similar table in reports that you create.
 
 ````
 ---
@@ -39,7 +39,7 @@ output: html_document
 ---
 
 ## Simple Markup
-The `highlightHTML` packages allows for {#bggrey simple markup} to add formatting to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
+The `highlightHTML` packages allows for {#bggrey simple markup} to add styling to text and tables. Using the `rmarkdown` package and the `table_id_inject` function allows users to easily add markup to Rmd documents and render directly to HTML.
 
 ```{r symm, echo = FALSE, results = 'asis', message = FALSE}`r ''`
 library(dplyr)
@@ -75,9 +75,9 @@ chickwts %>%
   knitr::kable(format = 'markdown')
 ```
 
-It is worth discussing the `table_id_inject` function in more detail here. The function takes two required arguments, `id` and `conditionals` and two optional arguments, `variable` and `num_digits`. The two required arguments are a vector of CSS ids (e.g. #bggrey) and a vector of conditional expressions that are evaluated to identify the location to insert the CSS id. These two arguments must be the same length and the CSS id and conditional expression are matched by location. That is, the first element of each argument are matched, the second element of each, and so on. The optional argument, `variable`, specifies which column(s) of the data to evaluate the conditional expression on. By default this argument is empty meaning that all columns are evaluated. If a CSS id is specific to a specific column(s), this argument specified as a list can be included. Finally, the optional `num_digits` argument is used to round the numeric columns. See `round` for more details.
+It is worth discussing the `table_id_inject` function in more detail here. The function takes two required arguments, `id` and `conditionals` and two optional arguments, `variable` and `num_digits`. The two required arguments are a vector of CSS ids (e.g. #bggrey) and a vector of conditional expressions that are evaluated to identify the location to insert the CSS id. These two arguments must be the same length and the CSS id and conditional expression are matched by location. That is, the first element of each argument are matched, the second element of each, and so on. The optional argument, `variable`, specifies which column(s) of the data to evaluate the conditional expression on. By default this argument is empty meaning that the conditional expressions are evaluated on every column. If a CSS id is specific to a specific column(s), this argument, specified as a list, can be included to limit the conditional expression to be evaluated on only the column(s) of interest. Finally, the optional `num_digits` argument is used to round the numeric columns. See `round` for more details.
 
-Finally, the Rmd file itself can be passed to the `highlight_html` function which will automatically compile the input file into an HTML output file. The `highlight_html` function takes three main arguments, the path to the input Rmd file (can also be a markdown or HTML file), the path to save the output HTML file, and the CSS styling to be used for the formatting. Below is the example of processing the simple example shown above. 
+Finally, the Rmd file itself can be passed to the `highlight_html` function which will automatically compile the input file into an HTML output file. The `highlight_html` function takes three main arguments, the path to the input Rmd file (can also be a markdown or HTML file), the path to save the output HTML file, and the CSS styling to be used for the styling Below is the example of processing the simple example shown above. 
 
 ```{r function, eval=FALSE}
 library(highlightHTML)
@@ -89,15 +89,14 @@ tags <- c('#bgblack {background-color: black; color: white;}',
           '#textblue {color: blue}')
 
 highlight_html(input = file, output = tempfile(fileext = ".html"),
-               tags = tags, browse = TRUE, 
-               render = TRUE)
+               tags = tags, browse = TRUE, render = TRUE)
 ```
 
-The results HTML output file now looks like the following:
+The resulting HTML file now looks like the following:
 
 ![joss output](inst/examples/joss_output.png)
 
-Finally, the `highlight_html` function has an optional argument called `browse`. This argument is a TRUE/FALSE flag, which defaults to TRUE, to indicate whether the HTML output file should be opened in the default browser upon successful compilation. This can be a good way to view the file to ensure the desired formatting was achieved.
+Finally, the `highlight_html` function has an optional argument called `browse`. This argument is a TRUE/FALSE flag, which defaults to TRUE, to indicate whether the HTML output file should be opened in the default browser upon successful compilation. This can be a good way to view the file to ensure the desired styling was achieved.
 
 ## Vignette
 Additional examples can be found in the vignette called, The Basics. This file give more information and examples. The vignette should come with the package when installed from CRAN. 
