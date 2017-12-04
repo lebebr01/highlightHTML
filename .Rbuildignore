@@ -5,3 +5,5 @@
 ^docs$
 ^cran-comments\.md$
 ^news\.md$
+^conduct\.md$
+^contributing\.md$
