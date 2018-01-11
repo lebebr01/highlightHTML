@@ -1,5 +1,10 @@
 # highlightHTML
 
+## v 0.2.0
+- A few last updates based on JOSS reviewer feedback.
+- Added a manual table entry example in README to show the CSS id insertion directly.
+- Added check for `table_id_inject` function to check that arguments are the same length. Added unit tests for these as well.
+
 ## v 0.1.4
 - Updated based on JOSS reviewer feedback.
 - Significantly modified README and also clarified vignette to reflect what is believed to be most typical workflow. This is specifically moving from Rmd to HTML.
