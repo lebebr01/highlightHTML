@@ -2,8 +2,10 @@ Package: highlightHTML
 Type: Package
 Title: Highlight HTML Text and Tables
 Version: 0.2.0
-Authors@R: person("Brandon", "LeBeau", email = "lebebr01+highlightHTML@gmail.com",
-               role = c("aut", "cre"))
+Authors@R: person("Brandon", "LeBeau", 
+                  email = "lebebr01+highlightHTML@gmail.com",
+                  role = c("aut", "cre"),
+                  comment = c(ORCID = "0000-0002-1265-8761"))
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>
 Description: A tool to format R markdown with CSS ids for HTML output. 
     The tool may be most helpful for those using markdown to create reproducible
