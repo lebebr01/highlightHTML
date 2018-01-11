@@ -1,7 +1,7 @@
 Package: highlightHTML
 Type: Package
 Title: Highlight HTML Text and Tables
-Version: 0.1.4
+Version: 0.2.0
 Authors@R: person("Brandon", "LeBeau", email = "lebebr01+highlightHTML@gmail.com",
                role = c("aut", "cre"))
 Maintainer: Brandon LeBeau <lebebr01+highlightHTML@gmail.com>

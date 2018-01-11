@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Have you ever wanted to include some form of styling, either conditional or nonconditional, when going from a (R)markdown input document to a html output document? If so, this package may be worthwhile to you. The `highlightHTML` package inject CSS into the output HTML document automatically via CSS ids (more information on CSS ids here: <http://www.cssbasics.com/css-ids/>). 
+Have you ever wanted to include some form of styling, either conditional or nonconditional, when going from a (R)markdown input document to a html output document? If so, this package may be worthwhile to you. The `highlightHTML` package inject CSS into the output HTML document automatically via CSS ids and classes (more information on CSS ids and classes: <http://www.cssbasics.com/css-ids/> and <http://www.cssbasics.com/css-classes/>). 
 
 The examples below start by showing the syntax in somewhat trivial examples initially. This is done to help show the markdown syntax a bit more simply. Toward the end of the document, a more typical workflow going from Rmd to HTML is shown that puts all the pieces together.
 

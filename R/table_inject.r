@@ -64,6 +64,16 @@
 
 table_id_inject <- function(table, id, conditions, variable = NULL, num_digits = NULL) {
   
+  if(length(id) != length(conditions)) {
+    stop("The arguments id and conditions must be the same length")
+  }
+  
+  if(!is.null(variable)) {
+    if(length(id) != length(variable)) {
+      stop("The arguments id and variable must be the same length")
+    }
+  }
+  
   if(!is.null(num_digits)) {
     numeric_columns <- unlist(lapply(table, is.numeric))
     table[numeric_columns] <- round(table[numeric_columns], num_digits)

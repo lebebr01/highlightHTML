@@ -19,16 +19,44 @@ or the development version with devtools:
 
 ```r
 install.packages("devtools")
-devtools::install_github('lebebr01/highlightHTMl')
+devtools::install_github('lebebr01/highlightHTML')
 ```
 
 ## Usage
 
-As mentioned above, text and summary tables can be styled using CSS ids. The CSS ids are inserted into text by using braces (i.e. \{) with a CSS id hashtag following the opening brace (e.g. \{#bggrey example\}). In the previous example, the word "example" would be identified with the CSS id #bggrey and could be styled using CSS. 
+As mentioned above, text and summary tables can be styled using CSS ids or classes. The CSS ids (or classes) are inserted into text by using braces (i.e. \{) with a CSS id hashtag following the opening brace (e.g. `\{#bggrey example\}`). In the previous example, the word "example" would be identified with the CSS id #bggrey and could be styled using CSS. 
 
 There are two ways to create styling within a markdown summary table. The first option is useful if the markdown summary table is created manually (i.e. type by hand). In this scenario you simply need to add the hashtag to the desired cell of the summary table. Perhaps the more common workflow for adding hashtags to a summary table would be dynamically with R code. To do this, the function `table_id_inject` is used to create conditional arguments for adding the hashtags to a markdown summary table. This is shown in more detail with the example below.
 
-## Simple Example of Package Workflow
+## Adding CSS ids manually
+Suppose you have a summary table like the following (note: this table was created by typing manually, a more typical workflow is shown later using R directly):
+
+| Color Name | Number       |
+|----------- | ------------ |
+| Red        |  25          |
+| Blue       |  40          |
+| Green      |  4           |
+| Orange     |  87          |
+
+You could then add styling by adding the following tags to the table, again this was added by hand, but a conditional example with R is shown later.
+
+| Color Name | Number       |
+|----------- | ------------ |
+| Red        |  25  #bgred  |
+| Blue       |  40  #bgblue |
+| Green      |  4           |
+| Orange     |  87          |
+
+The addition of the *#bgblue* and *#bgred* indicates which cells will be changed. After turning the markdown document into an html file, this package can now be used to post-process the html file. The post-processing will add an id value for each cell with the *#bgblue* or *#bgred* and remove those from the table. 
+
+The CSS for these ids could be as simple as the following to change the background color of the cells with the CSS id inserted above:
+
+````
+#bgred {background-color: #FF0000;}
+#bgblue {background-color: #0000FF;}
+````
+
+## Simple Example of Common Package Workflow
 
 Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a table using R code and the `table_id_inject` function. The summary table below is calculating the mean and standard deviation of the chick weights by different feed types. You can imagine creating a similar table in reports that you create.
 
