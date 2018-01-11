@@ -1,0 +1,27 @@
+{
+    "description": "<p>The following are a description of changes to the package based on JOSS reviewer feedback.</p>\nv 0.2.0\n<ul>\n<li>A few last updates based on JOSS reviewer feedback.</li>\n<li>Added a manual table entry example in README to show the CSS id insertion directly.</li>\n<li>Added check for <code>table_id_inject</code> function to check that arguments are the same length. Added unit tests for these as well.</li>\n</ul>\nv 0.1.4\n<ul>\n<li>Updated based on JOSS reviewer feedback.</li>\n<li>Significantly modified README and also clarified vignette to reflect what is believed to be most typical workflow. This is specifically moving from Rmd to HTML.</li>\n<li>Enhanced documentation for many functions to provide clarity in inputs and types of inputs that are allowed.</li>\n<li>Added <code>num_digits</code> argument to <code>table_id_inject</code> function to allow for control over number of decimals of numeric columns in summary tables.</li>\n<li>Attempted to incorporate more useful unit testing.</li>\n<li>Removed <code>update_css</code> argument from <code>highlight_html</code> master function. This was designed more as an internal function and likely would always be desired.</li>\n<li>Adjusted internal function names for easier debugging in the future</li>\n<li>Added error handling within <code>rgb2hex</code> function. Also fixed <code>&amp;</code> to <code>&amp;&amp;</code> in a few instances.</li>\n</ul>", 
+    "license": "other-open", 
+    "title": "lebebr01/highlightHTML: JOSS Acceptance", 
+    "version": "v0.2.0", 
+    "upload_type": "software", 
+    "publication_date": "2018-01-11", 
+    "creators": [
+        {
+            "affiliation": "University of Iowa",
+            "name": "Brandon LeBeau"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/lebebr01/highlightHTML/tree/v0.2.0", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.598250", 
+            "relation": "isPartOf"
+        }
+    ]
+}
