@@ -1,5 +1,8 @@
 # highlightHTML
 
+## v 0.2.1
+- Add zenodo json metadata.
+
 ## v 0.2.0
 - A few last updates based on JOSS reviewer feedback.
 - Added a manual table entry example in README to show the CSS id insertion directly.
