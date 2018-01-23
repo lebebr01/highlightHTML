@@ -1,0 +1,13 @@
+citHeader("To cite highlightHTML in publications, please use:")
+
+citEntry(entry = "Article",
+  author = "Brandon LeBeau",
+  title = "{highlightHTML}: CSS Formatting of R Markdown Documents",
+  journal = "Journal of Open Source Software",
+  year = "2018",
+  volume = "3",
+  issue = "21",
+  pages = "185",
+  doi = "10.21105/joss.00185",
+  textVersion = "Brandon LeBeau, (2018). highlightHTML: CSS Formatting of R Markdown Documents. Journal of Open Source Software, 3(21), 185, https://doi.org/10.21105/joss.00185"
+)
