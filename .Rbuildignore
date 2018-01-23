@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^\.zenodo\.json$
 ^README\.Rmd$
 ^docs$
 ^cran-comments\.md$
