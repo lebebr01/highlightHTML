@@ -1,18 +1,12 @@
-## Resubmission
-This is a resubmission. In this version I have: 
-
-* Updated LICENSE elements to all caps.
-
 ## Test Environments
-* local windows install, R 3.3.2
-* r-hub (devel and release)
-* ubuntu 12.04 (travis CI) R 3.3.1
-* ubuntu 14.04 (travis CI) R 3.3.2
-* OS X 10.10.5 (travis CI) R 3.3.2
-* OS X 10.11.6 (travis CI) R 3.3.2
+* local windows install, R 3.4.3
+* ubuntu 14.04 (travis CI) R 3.3.3
+* ubuntu 14.04 (travis CI) R 3.4.2
+* ubuntu 14.04 (travis CI) R devel
+* OS X 10.11.6 (travis CI) R 3.4.3
 
 ## R CMD check results
-One Note: New Submission
+No errors, warnings, or notes.
 
 ## Downstream Dependencies
 There are currently no downstream dependencies.
