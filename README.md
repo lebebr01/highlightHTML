@@ -1,6 +1,7 @@
 # highlightHTML
 
 [![Build Status](https://travis-ci.org/lebebr01/highlightHTML.svg?branch=master)](https://travis-ci.org/lebebr01/highlightHTML)
+[![R build status](https://github.com/lebebr01/highlightHTML/workflows/R-CMD-check/badge.svg)](https://github.com/lebebr01/highlightHTML/actions?workflow=R-CMD-check)
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00185/status.svg)](https://doi.org/10.21105/joss.00185)
@@ -90,6 +91,12 @@ chickwts %>%
 ````
 
 The resulting summary table would look like the following in markdown:
+
+```
+## Warning: package 'dplyr' was built under R version 3.6.3
+```
+
+
 
 |feed                |avg_weight       |sd_weight          |
 |:-------------------|:----------------|:------------------|
