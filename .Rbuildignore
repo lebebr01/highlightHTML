@@ -8,3 +8,5 @@
 ^news\.md$
 ^conduct\.md$
 ^contributing\.md$
+^\.github$
+^appveyor\.yml$
