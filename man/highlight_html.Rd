@@ -4,8 +4,14 @@
 \alias{highlight_html}
 \title{Master highlight HTML function}
 \usage{
-highlight_html(input, output, tags, browse = TRUE, print = FALSE,
-  render = TRUE)
+highlight_html(
+  input,
+  output,
+  tags,
+  browse = TRUE,
+  print = FALSE,
+  render = TRUE
+)
 }
 \arguments{
 \item{input}{File name of markdown or rmarkdown file to highlight the cells of the table or text. 
@@ -36,11 +42,6 @@ a specific criteria. This function handles both tables as well as normal text.
 The options are only limited based on your knowledge of CSS.
 }
 \examples{
-\donttest{
-# Example of simple test table
-# Change background color of table cells
-library(highlightHTML)
-
 # Setting path for example html files 
 # To see path where these are saved, type file or file1 in the 
 # r console.
@@ -53,41 +54,4 @@ tags <- c("#bgred {background-color: #FF0000;}",
 # Command to post-process HTML file - Writes to temporary file
 highlight_html(input = file, output = tempfile(fileext = ".html"),  
   tags = tags, browse = FALSE)
-  
-# Change background color and text color with CSS
-tags <- c("#bgred {background-color: #FF0000; color: white;}", 
-  "#bgblue {background-color: #0000FF; color: white;}")
-  
-# Post-process HTML file
-highlight_html(input = file, output = tempfile(fileext = ".html"),  
-  tags = tags, update_css = TRUE, browse = TRUE, print = FALSE)
-
-# By default the new file is opened in your default browser, here set to FALSE
-highlight_html(input = file, output = tempfile(fileext = ".html"), 
-  tags = tags, browse = FALSE, print = FALSE)
-  
-# Setting path for example html files 
-# To see path where these are saved, type file or file1 in the 
-# r console.
-file <- system.file('examples', 'bgtext.html', package = 'highlightHTML')
-
-# Change background color and text color with CSS
-tags <- c("#bgblack {background-color: black; color: white;}", 
-  "#bgblue {background-color: #0000FF; color: white;}",
-  "#colgreen {color: green;}")
-  
-# Post-process HTML file
-highlight_html(input = file, output = tempfile(fileext = ".html"), 
-  tags = tags, browse = TRUE)
-  
-# Use of render
-file <- system.file('examples', 'mwe.md', package = 'highlightHTML')
-tags <- c("#bgred {background-color: #FF0000; color: white;}",
-   "#bgblue {background-color: #0000FF; color: white;}",
-   "#bgblack {background-color: #000000; color: white;}",
-   "#colgold {color: #FFD700;}")
-highlight_html(input = file, output = tempfile(fileext = '.html'),
-  tags = tags, browse = TRUE, render = TRUE)
-}
-  
 }
