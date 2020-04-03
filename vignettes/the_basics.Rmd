@@ -83,7 +83,7 @@ A more typical workflow for the highlightHTML package is to go from an (R)markdo
 
 ## Simple Example of Package Workflow
 
-Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a summary table using R code and the `table_id_inject` function. The summary table below is calculating the mean and standard deviation of the chick weights by different feed types. You can imagine creating a similar table in reports that you create.
+Below is a simple example of an Rmd document that combines both elements, text markup and inserting CSS ids dynamically into a summary table using  R code and the `table_id_inject` function. The summary table below is calculating the mean and standard deviation of the chick weights by different feed types. You can imagine creating a similar table in reports that you create.
 
 ````
 ---
@@ -122,7 +122,8 @@ chickwts %>%
   group_by(feed) %>%
   summarise(avg_weight = mean(weight),
             sd_weight = sd(weight)) %>%
-  mutate(feed = as.character(feed)) %>%
+  mutate(feed = as.character(feed)) %>% 
+  data.frame() %>%
   table_id_inject(id = c('#bggrey', '#bgblack', '#bglightred', '#textblue'), 
                 conditions = c('> 270', '> 300', '> 60', '== "horsebean"'),
                 variable = list('avg_weight', 'avg_weight', 'sd_weight', 'feed'),
