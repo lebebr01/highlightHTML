@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/lebebr01/highlightHTML.svg?branch=master)](https://travis-ci.org/lebebr01/highlightHTML)
 [![R build status](https://github.com/lebebr01/highlightHTML/workflows/R-CMD-check/badge.svg)](https://github.com/lebebr01/highlightHTML/actions?workflow=R-CMD-check)
 [![codecov.io](https://codecov.io/github/lebebr01/highlightHTML/coverage.svg?branch=master)](https://codecov.io/github/lebebr01/highlightHTML?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](http://cran.r-project.org/package=highlightHTML)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/highlightHTML)](https://cran.r-project.org/package=highlightHTML)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00185/status.svg)](https://doi.org/10.21105/joss.00185)
 
 The highlightHTML package adds markdown syntax to allow for additional styling of (R)markdown documents with HTML output files. The syntax uses HTML id selectors and Cascading Style Sheets (CSS) specified by the user to add the desired style to the HTML output file. The ability to customize the HTML file is limited by the user knowledge of CSS and the ability of CSS to style a given element. 
