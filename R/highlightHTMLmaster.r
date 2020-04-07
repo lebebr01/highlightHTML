@@ -30,8 +30,10 @@
 #'   "#bgblue {background-color: #0000FF;}")
 #'   
 #' # Command to post-process HTML file - Writes to temporary file
+#' \dontrun{
 #' highlight_html(input = file, output = tempfile(fileext = ".html"),  
 #'   tags = tags, browse = FALSE)
+#' }
 #' @export
 highlight_html <- function(input, output, tags, browse = TRUE, print = FALSE,
                            render = TRUE) {

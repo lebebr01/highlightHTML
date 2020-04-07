@@ -52,6 +52,8 @@ tags <- c("#bgred {background-color: #FF0000;}",
   "#bgblue {background-color: #0000FF;}")
   
 # Command to post-process HTML file - Writes to temporary file
+\dontrun{
 highlight_html(input = file, output = tempfile(fileext = ".html"),  
   tags = tags, browse = FALSE)
+}
 }
