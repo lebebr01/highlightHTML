@@ -23,6 +23,7 @@
 #' # Setting path for example html files 
 #' # To see path where these are saved, type file or file1 in the 
 #' # r console.
+#' \dontrun{
 #' file <- system.file('examples', 'bgtable.html', package = 'highlightHTML')
 #' 
 #' # Creating CSS tags to inject into HTML document
@@ -30,7 +31,6 @@
 #'   "#bgblue {background-color: #0000FF;}")
 #'   
 #' # Command to post-process HTML file - Writes to temporary file
-#' \dontrun{
 #' highlight_html(input = file, output = tempfile(fileext = ".html"),  
 #'   tags = tags, browse = FALSE)
 #' }
